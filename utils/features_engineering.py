@@ -37,6 +37,7 @@ def market_features_engineering(df):
     df_temp["return_3d"] = np.log(df_temp["close"].pct_change(3) + 1)
     df_temp["return_4d"] = np.log(df_temp["close"].pct_change(4) + 1)
     df_temp["return_5d"] = np.log(df_temp["close"].pct_change(5) + 1)
+    df_temp["return_2w"] = np.log(df_temp["close"].pct_change(10) + 1)
     df_temp["return_1m"] = np.log(df_temp["close"].pct_change(21) + 1)
     df_temp["return_2m"] = np.log(df_temp["close"].pct_change(42) + 1)
     df_temp["return_3m"] = np.log(df_temp["close"].pct_change(63) + 1)
@@ -47,5 +48,5 @@ def market_features_engineering(df):
     return df_temp[["volume_chg", "open_return", "high_return", "low_return", "intraday_amplitude", "close_return", 
                "volume_chg_5day", "volume_chg_1month",
                "MA5_21_cross", "close_to_MA5", "close_to_MA21", "close_to_MA50", "close_to_MA100",
-               "return_2d", "return_3d", "return_4d", "return_5d", "return_1m", "return_2m", "return_3m",
+               "return_2d", "return_3d", "return_4d", "return_5d", "return_2w", "return_1m", "return_2m", "return_3m",
               "volatility_1m", "volatility_2m"]]
