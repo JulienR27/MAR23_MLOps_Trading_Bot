@@ -11,15 +11,26 @@ We then compute various features based on those : log return with various lags, 
 
 Models are trained to predict stocks price variation at different time horizons. More precisely, as we are supposed to get the end of day prices the day after, all models are actually trained to predict the horizon + 1 day.
 
-lgbm_market_1d: trained on market data only to predict tomorrow price
-lgbm_market_1w: trained on market data only to predict price in one week
-lgbm_market_2w: trained on market data only to predict price in two weeks
-lgbm_market_1m: trained on market data only to predict price in one month
-lgbm_fundamental_1d: trained on fundamental data only to predict tomorrow price
-lgbm_fundamental_1w: trained on fundamental data only to predict price in one week
-lgbm_fundamental_2w: trained on fundamental data only to predict price in two weeks
-lgbm_fundamental_1m: trained on fundamental data only to predict price in one month
-lgbm_market_and_fundamental_1d: trained on market and fundamental data to predict tomorrow price
-lgbm_market_and_fundamental_1w: trained on market and fundamental data to predict price in one week
-lgbm_market_and_fundamental_2w: trained on market and fundamental data to predict price in two weeks
-lgbm_market_and_fundamental_data_1m: trained on market and fundamental data to predict price in one month
+lgbm_market_1d: trained on market data only to predict tomorrow price variation
+
+lgbm_market_1w: trained on market data only to predict price change in one week
+
+lgbm_market_2w: trained on market data only to predict price change  in two weeks
+
+lgbm_market_1m: trained on market data only to predict price change in one month
+
+lgbm_fundamental_1d: trained on fundamental data only to predict tomorrow price variation
+
+lgbm_fundamental_1w: trained on fundamental data only to predict price change in one week
+
+lgbm_fundamental_2w: trained on fundamental data only to predict price change in two weeks
+
+lgbm_fundamental_1m: trained on fundamental data only to predict price change in one month
+
+lgbm_market_and_fundamental_1d: trained on market and fundamental data to predict tomorrow price variation
+
+lgbm_market_and_fundamental_1w: trained on market and fundamental data to predict price change in one week
+
+lgbm_market_and_fundamental_2w: trained on market and fundamental data to predict price change in two weeks
+
+lgbm_market_and_fundamental_data_1m: trained on market and fundamental data to predict price change in one month
