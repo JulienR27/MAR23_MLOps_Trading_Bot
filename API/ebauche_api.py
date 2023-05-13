@@ -54,15 +54,15 @@ class User(BaseModel):
     username: str
     password: str
     right: str
-    
+
 @api.get('/admin', name='')
-def get_users(user: User, username: str = Depends(get_current_user)):
+def get_users(user: User, username: str = Depends(get_admin)):
    return {"Users": "List of users and their rights"}   
 
 
 # L'admin peut rajouter des utilisateurs dans la BDD" (A voir pour la gestion du mot de passe)
 @api.put('/admin', name='')
-def put_users(user: User, username: str = Depends(get_current_user)):
+def put_users(user: User, username: str = Depends(get_admin)):
    # Dictionary that we want to add to csv database
    users_dict = users_db.do_dict(orient='records')
    # list of column names
@@ -81,7 +81,7 @@ def put_users(user: User, username: str = Depends(get_current_user)):
 
 # L'admin peut rajouter des droits aux utilisateurs dans la BDD (A voir pour la gestion du mot de passe)
 @api.post('/admin', name='')
-def post_users(username: str = Depends(get_current_user)):
+def post_users(username: str = Depends(get_admin)):
    return #user right added   
 
 
