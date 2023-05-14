@@ -26,7 +26,7 @@
 
     - Dans ce contexte l'utilisation d'un logiciel de trading capable d’analyser rapidement  de grandes quantités de données, permet d’élargir les opportunités  parmi un nombre bien plus grand d'actions. Ce qui rend possible la mise en place de stratégies de trading plus complexes. 
 
-    - La gestion du risque et de l’horizon d’investissement sont capitales pour construire un portefeuille. De la diversification des investissements et la gestion de la liquidité et la répartition du capital sur un certain nombre d'actions dépend la sécurité des investissments. L’aide apportée par un système intelligent capable d’analyser un nombre colossale de données de cours et/ou fondamentales permet de réduire les risques et de maximiser les chances de réaliser des bénéfices à long terme. 
+    - La gestion du risque et de l’horizon d’investissement sont capitales pour construire un portefeuille. De la diversification des investissements et la gestion de la liquidité et la répartition du capital sur un certain nombre d'actions dépend la sécurité des investissements. L’aide apportée par un système intelligent capable d’analyser un nombre colossale de données de cours et/ou fondamentales permet de réduire les risques et de maximiser les chances de réaliser des bénéfices à long terme. 
 
     - La rentabilité ne dépend aussi des coûts : frais de courtage, coûts associés au trading, fiscalité...
 
@@ -44,40 +44,70 @@
 
 - ### Qui est le commanditaire de l’application ?
 
-    L’application s’adresse à des petits porteurs qui n’on
+    Réalisé dans le cadre de notre formation de MLOps avec DataScientest
 
 - ### Qui sera l’utilisateur de l’application ?
 
+    L’application s’adresse à des tradeurs particuliers, qui n’ont pas la puissance des outils financiers mis à dispositions des tradeurs institutionnels et professionnels et qui désirent pouvoir augmenter leur scope pour détecter des opportunités d’investissement en action. (et minimiser les risques)
+
 - ### Qui sera l’administrateur de l’application ?
+
+    - Application administrée par notre groupe
+
+    - utilisateurs :
+
+        - création des comptes utilisateurs automatisés
+
+        - modification des comptes par l’utilisateurs
+        - gestion des licences / abonnements
+
+    - gestion des données financières (cours, fondamentales...) (vérification et prétraitement des données)
+
+    - gestion des modèles  (entraînement, mises en productions)
 
 - ### Dans quel contexte l’application devra-t-elle s’intégrer (site web, software,
   serveur cloud…) ?
 
+  Niveau 1 : site web / optionnel : +/- prototype application androïde
+
+  Niveau 2 : serveur Cloud
+
 - ### Via quel support l’application sera-t-elle utilisée (interface graphique, terminal,
-API…) ?
+  API…) ?
+
+  Niveau 1 :  API
+
+  NIveau 2 : interface graphique site internet
+
+  
 ## 2) Modèle
-Au cours de ce projet, vous ne serez pas évalués sur la complexité, la performance
-et la vitesse d’exécution du modèle. En revanche, vous serez évalué sur votre
-capacité à déployer, monitorer et maintenir ce dernier.
-Cette partie devra détailler notamment :
+*Au cours de ce projet, vous ne serez pas évalués sur la complexité, la performance*
+*et la vitesse d’exécution du modèle. En revanche, vous serez évalué sur votre*
+*capacité à déployer, monitorer et maintenir ce dernier.*
+*Cette partie devra détailler notamment :*
+
 - ### Le type de modèle employé et une rapide explication de son fonctionnement
 ainsi que ses performances générales
 - ### La définition des métriques d’évaluation du modèle vis à vis des contraintes
 du projet (accuracy, robustesse, temps d’entraînement, temps de
 prédiction…)
 ## 3) Base de données
-Cette partie doit vous permettre de définir les données que vous utiliserez pour
-réaliser ce projet. Bien souvent, vous aurez accès dans le cadre de ce projet à des
-données “statiques”, qui n’évolueront pas tout au long du projet. Cependant, en
-général dans le cadre d’un projet MLOps en entreprise, les données évoluent au
-cours du temps (suite à l’ajout de nouvelles données et à la correction de certaines
-anciennes). Il sera donc nécessaire de discuter à la fois de la base de données à
-laquelle vous avez véritablement accès, et de celle à laquelle vous devriez avoir
-accès dans l’hypothèse d’un projet d’entreprise.
-Une attention particulière sera portée sur la gestion de l’ingestion de nouvelles
-données.
-Il est recommandé d’ajouter des images de la base de données (ou de son schéma
-d’architecture) pour faciliter la compréhension.
+*Cette partie doit vous permettre de définir les données que vous utiliserez pour*
+*réaliser ce projet. Bien souvent, vous aurez accès dans le cadre de ce projet à des*
+*données “statiques”, qui n’évolueront pas tout au long du projet. Cependant, en*
+*général dans le cadre d’un projet MLOps en entreprise, les données évoluent au*
+*cours du temps (suite à l’ajout de nouvelles données et à la correction de certaines*
+*anciennes). Il sera donc nécessaire de discuter à la fois de la base de données à*
+*laquelle vous avez véritablement accès, et de celle à laquelle vous devriez avoir*
+*accès dans l’hypothèse d’un projet d’entreprise.*
+*Une attention particulière sera portée sur la gestion de l’ingestion de nouvelles*
+*données.*
+*Il est recommandé d’ajouter des images de la base de données (ou de son schéma*
+*d’architecture) pour faciliter la compréhension.*
+
+* Donnée accessible via l’API de Tiingo ?
+* Scrapping ?
+
 ## 4) API
 L’API est l’interface entre le modèle, la base de données et l’utilisateur. Il n’est pas
 obligatoire, dans le cadre de ce projet, d’y intégrer une interface graphique. En
