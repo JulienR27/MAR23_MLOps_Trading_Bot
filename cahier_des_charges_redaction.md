@@ -212,12 +212,12 @@ prédiction…)
 * mon profil investisseur ?
 
 ## 5) Testing & Monitoring
-Au cours du déploiement de l’application, il sera nécessaire de porter une attention
-particulière au fait que les différentes parties du projet fonctionnent correctement
-individuellement (tests unitaires), et que les performances de l’application soient
-toujours en adéquation avec le cahier des charges.
-Cette partie devra détailler les tests unitaires qu’il faudra mettre en oeuvre comme
-par exemple :
+*Au cours du déploiement de l’application, il sera nécessaire de porter une attention*
+*particulière au fait que les différentes parties du projet fonctionnent correctement*
+*individuellement (tests unitaires), et que les performances de l’application soient*
+*toujours en adéquation avec le cahier des charges.*
+*Cette partie devra détailler les tests unitaires qu’il faudra mettre en oeuvre comme*
+*par exemple :*
 
 - ### Tester le bon fonctionnement du modèle lors de l’entraînement
 - ### Tester le bon fonctionnement du modèle lors de la prédiction
