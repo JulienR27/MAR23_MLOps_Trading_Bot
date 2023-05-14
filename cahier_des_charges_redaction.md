@@ -20,7 +20,17 @@
 
     ### Problématiques :  
 
-    ​	Le nombre important d’actions existante ne permet pas à un individu de surveiller plus de 
+    - ll existe plus de 600 000 actions cotées dans le monde, réparties sur plus de 100 bourses dans plus de 80 pays. 
+
+    - Il est communément admis qu'une personne seule et expérimentée peut suivre sans aide logicielle, un portefeuille d'environ 20 à 30, (en  fonction de la complexité de sa stratégie de trading, de la fréquence du trading, et de la quantité d'informations à analyser)
+
+    - Dans ce contexte l'utilisation d'un logiciel de trading capable d’analyser rapidement  de grandes quantités de données, permet d’élargir les opportunités  parmi un nombre bien plus grand d'actions. Ce qui rend possible la mise en place de stratégies de trading plus complexes. 
+
+    - La gestion du risque et de l’horizon d’investissement sont capitales pour construire un portefeuille. De la diversification des investissements et la gestion de la liquidité et la répartition du capital sur un certain nombre d'actions dépend la sécurité des investissments. L’aide apportée par un système intelligent capable d’analyser un nombre colossale de données de cours et/ou fondamentales permet de réduire les risques et de maximiser les chances de réaliser des bénéfices à long terme. 
+
+    - La rentabilité ne dépend aussi des coûts : frais de courtage, coûts associés au trading, fiscalité...
+
+        
 
     ### 			différents niveaux envisagés en fonction de l’avancé du projet :
 
