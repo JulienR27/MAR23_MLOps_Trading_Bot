@@ -79,6 +79,10 @@
 
   NIveau 2 : interface graphique site internet
 
+  Niveau 3 : alertes mail
+  
+  Niveau 4 : alertes SMS
+  
   
 ## 2) Modèle
 *Au cours de ce projet, vous ne serez pas évalués sur la complexité, la performance*
@@ -147,7 +151,42 @@ prédiction…)
 *d’architecture) pour faciliter la compréhension.*
 
 * Donnée accessible via l’API de Tiingo ?
+
 * Scrapping ?
+
+    ## base de donnée utilisateurs
+
+    * credentials
+    * portefeuilles
+    * profils investisseurs
+    * licences / services autorisés
+    * contrat
+    * rôle
+    
+    ## base de donnée rentraînement modèles
+    
+    * base de données agrégeant toutes les mises à jours quotidiennes
+    
+    * modèles en production
+    
+    * sauvegarde des anciens modèles (remplacés par de plus performants)
+    
+    * nouveaux modèles en cours de validation (qui remplaceront ou non ceux en production)
+    
+    * modèles produits par autoML ???
+    
+        
+    
+    ## base de donnée prédiction des modèles
+    
+    * sauvegarde des prédictions pour accéléré le temps de réponse aux requêtes utilisateurs
+    * base de données utilisée pour effectuer les prédictions (base + légère que celle utilisée pour le réentraînement des modèles)
+    
+    
+    
+    
+    
+    
 
 ## 4) API
 L’API est l’interface entre le modèle, la base de données et l’utilisateur. Il n’est pas
