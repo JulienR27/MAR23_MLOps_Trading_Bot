@@ -87,7 +87,48 @@
 *Cette partie devra détailler notamment :*
 
 - ### Le type de modèle employé et une rapide explication de son fonctionnement
-ainsi que ses performances générales
+  Tous les modèles sont des **modèle de régression LightGBM** visant à prédire la **variation future des prix des actions** américaines.
+
+  Ils sont entraînés sur trois types de jeux de données :
+
+  - uniquement les **données de marché** : ouverture, plus haut, plus bas, clôture, volume. Nous calculons ensuite diverses caractéristiques basées sur celles-ci : rendement logarithmique avec différents décalages, valeur de clôture à différentes moyennes mobiles, croisement de moyennes mobiles, volatilité historique, changements de volume avec différents décalages.
+  - uniquement des **données fondamentales** (macroéconomiques, financières des actions) : obligations américaines à 10 ans, VIX, EPS, PEG, ratio cours/bénéfice, rendement des dividendes, surprise des annonces de bénéfices, secteur, etc.
+  - à la fois sur les **données de marché** **et** les **données fondamentales**.
+
+  <div style="border: 1px solid black; padding: 10px;">Les modèles sont entraînés pour <b>prédire la variation des prix des actions à différents horizons temporels</b>. Plus précisément, comme nous sommes censés obtenir les prix de clôture à la fin de la journée suivante, <b>tous les modèles sont en fait entraînés pour prédire l'horizon + 1 jour</b>.</div>
+
+  **<u>liste des modèles actuels :</u>**
+
+  * lgbm_market_1d: trained on market data only to predict tomorrow price variation
+
+  * lgbm_market_1w: trained on market data only to predict price change in one week
+
+  * lgbm_market_2w: trained on market data only to predict price change in two weeks
+
+  * lgbm_market_1m: trained on market data only to predict price change in one month
+
+  * lgbm_fundamental_1d: trained on fundamental data only to predict tomorrow price variation
+
+  * lgbm_fundamental_1w: trained on fundamental data only to predict price change in one week
+
+  * lgbm_fundamental_2w: trained on fundamental data only to predict price change in two weeks
+
+  * lgbm_fundamental_1m: trained on fundamental data only to predict price change in one month
+
+  * lgbm_market_and_fundamental_1d: trained on market and fundamental data to predict tomorrow price variation
+
+  * lgbm_market_and_fundamental_1w: trained on market and fundamental data to predict price change in one week
+
+  * lgbm_market_and_fundamental_2w: trained on market and fundamental data to predict price change in two weeks
+
+  * lgbm_market_and_fundamental_data_1m: trained on market and fundamental data to predict price change in one month
+
+  **<u>Performances générales :</u>**
+  
+  
+  
+  
+  
 - ### La définition des métriques d’évaluation du modèle vis à vis des contraintes
 du projet (accuracy, robustesse, temps d’entraînement, temps de
 prédiction…)
