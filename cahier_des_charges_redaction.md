@@ -1,24 +1,47 @@
 <img src="./assets/image-20230514163219621.png" alt="image-20230514163219621" style="zoom:25%;" />
 
 # Cahier des charges projet MLOps
-Le cahier des charges est primordial dans la réalisation d’un projet, ce dernier doit
-vous permettre de suivre une ligne directrice tout au long de votre projet. Il ne doit
-pas être négligé. Celui-ci devrait faire entre 3 et 7 pages.
+*Le cahier des charges est primordial dans la réalisation d’un projet, ce dernier doit*
+*vous permettre de suivre une ligne directrice tout au long de votre projet. Il ne doit*
+*pas être négligé. Celui-ci devrait faire entre 3 et 7 pages.*
 
 ## 1) Contexte et Objectifs
-Le but de cette partie est de définir les parties prenantes, et le cadre dans lequel
-s’intègre le projet. Soyez le plus précis possible, n’hésitez pas à être créatif. Il n’y a
-pas une seule solution pour cette partie, et nous n’attendons pas à ce que vous
-aboutissiez à quelque chose d’opérationnel à l’issue du projet. L’objectif est d’avoir
-une ligne directrice pour le projet qui vous permettra de prendre des décisions au fur
-et à mesure.
-Cette partie devra répondre notamment aux questions suivantes :
+*Le but de cette partie est de définir les parties prenantes, et le cadre dans lequel*
+*s’intègre le projet. Soyez le plus précis possible, n’hésitez pas à être créatif. Il n’y a*
+*pas une seule solution pour cette partie, et nous n’attendons pas à ce que vous*
+*aboutissiez à quelque chose d’opérationnel à l’issue du projet. L’objectif est d’avoir*
+*une ligne directrice pour le projet qui vous permettra de prendre des décisions au fur*
+*et à mesure.*
+*Cette partie devra répondre notamment aux questions suivantes :*
+
 - A quelle problématique l’application doit-elle répondre ?
+
+    Contexte :  Trading en position “swing trading” sur la base des cours de clôture sur des actions boursières. Ce qui signifie de devoir prendre des décisions d’achat ou de ventes (y compris ventes à découvert) en se basant sur les cours de clôture des marchés boursiers plutôt que sur les fluctuations intraday des cours. L‘objectif est de profiter des mouvements de prix pour générer une plus-value.
+
+    Problématiques :  différents niveaux envisagés en fonction de l’avancé du projet
+
+    - **Niveau 1- Sur quels actions placer un ordre d’achat ou de vente (y compris à découvert) à l’instant de ma requête ?**  => proposition d’une liste ordonnée des choix possibles
+    - **Niveau 2- Avec quel ordre précisément ?** Tenir compte du portefeuille de l’utilisateur et de son horizon d’investissement pour optimiser les propositions => (courts, volume, type, date des validité) des ordres à passer acheter / garder  /vendre / stop loss...
+
+    
+
+    
+
+    
+
+    
+
+    Période des cours étudiée : Historiques journalier 
+
 - Qui est le commanditaire de l’application ?
+
 - Qui sera l’utilisateur de l’application ?
+
 - Qui sera l’administrateur de l’application ?
+
 - Dans quel contexte l’application devra-t-elle s’intégrer (site web, software,
-serveur cloud…) ?
+  serveur cloud…) ?
+
 - Via quel support l’application sera-t-elle utilisée (interface graphique, terminal,
 API…) ?
 ## 2) Modèle
