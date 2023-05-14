@@ -14,44 +14,45 @@
 *et à mesure.*
 *Cette partie devra répondre notamment aux questions suivantes :*
 
-- A quelle problématique l’application doit-elle répondre ?
+- ### A quelle problématique l’application doit-elle répondre ?
 
     Contexte :  Trading en position “swing trading” sur la base des cours de clôture sur des actions boursières. Ce qui signifie de devoir prendre des décisions d’achat ou de ventes (y compris ventes à découvert) en se basant sur les cours de clôture des marchés boursiers plutôt que sur les fluctuations intraday des cours. L‘objectif est de profiter des mouvements de prix pour générer une plus-value.
 
-    Problématiques :  différents niveaux envisagés en fonction de l’avancé du projet
+    ### Problématiques :  
+
+    ​	Le nombre important d’actions existante ne permet pas à un individu de surveiller plus de 
+
+    ### 			différents niveaux envisagés en fonction de l’avancé du projet :
 
     - **Niveau 1- Sur quels actions placer un ordre d’achat ou de vente (y compris à découvert) à l’instant de ma requête ?**  => proposition d’une liste ordonnée des choix possibles
-    - **Niveau 2- Avec quel ordre précisément ?** Tenir compte du portefeuille de l’utilisateur et de son horizon d’investissement pour optimiser les propositions => (courts, volume, type, date des validité) des ordres à passer acheter / garder  /vendre / stop loss...
+    - **Niveau 2- Avec quel ordre précisément ?** en fonction de l’horizon d’investissement pour optimiser les propositions => (courts, volume, type, date des validité) des ordres à passer acheter / garder  /vendre / stop loss... tenir compte de la probabilité de réalisation de l’ordre
+    - **Niveau 3- proposition faite en prenant en compte la composition du portefeuille de l’utilisateur** (faire entrer et sortir des valeurs)
+    - **Niveau 4- En optimisant la composition du portefeuille ?** gestion des risques : minimiser les risques et maximiser les gains.
+    - **Niveau 5- En prenant en compte les coûts** (frais, taxes, impôts ?) 
 
     
 
-    
+- ### Qui est le commanditaire de l’application ?
 
-    
+    L’application s’adresse à des petits porteurs qui n’on
 
-    
+- ### Qui sera l’utilisateur de l’application ?
 
-    Période des cours étudiée : Historiques journalier 
+- ### Qui sera l’administrateur de l’application ?
 
-- Qui est le commanditaire de l’application ?
-
-- Qui sera l’utilisateur de l’application ?
-
-- Qui sera l’administrateur de l’application ?
-
-- Dans quel contexte l’application devra-t-elle s’intégrer (site web, software,
+- ### Dans quel contexte l’application devra-t-elle s’intégrer (site web, software,
   serveur cloud…) ?
 
-- Via quel support l’application sera-t-elle utilisée (interface graphique, terminal,
+- ### Via quel support l’application sera-t-elle utilisée (interface graphique, terminal,
 API…) ?
 ## 2) Modèle
 Au cours de ce projet, vous ne serez pas évalués sur la complexité, la performance
 et la vitesse d’exécution du modèle. En revanche, vous serez évalué sur votre
 capacité à déployer, monitorer et maintenir ce dernier.
 Cette partie devra détailler notamment :
-- Le type de modèle employé et une rapide explication de son fonctionnement
+- ### Le type de modèle employé et une rapide explication de son fonctionnement
 ainsi que ses performances générales
-- La définition des métriques d’évaluation du modèle vis à vis des contraintes
+- ### La définition des métriques d’évaluation du modèle vis à vis des contraintes
 du projet (accuracy, robustesse, temps d’entraînement, temps de
 prédiction…)
 ## 3) Base de données
@@ -82,18 +83,18 @@ individuellement (tests unitaires), et que les performances de l’application s
 toujours en adéquation avec le cahier des charges.
 Cette partie devra détailler les tests unitaires qu’il faudra mettre en oeuvre comme
 par exemple :
-- Tester le bon fonctionnement du modèle lors de l’entraînement
-- Tester le bon fonctionnement du modèle lors de la prédiction
-- Tester le bon fonctionnement des différents endpoints de l’API
-- Tester le bon fonctionnement du process d’ingestion de nouvelles données
+- ### Tester le bon fonctionnement du modèle lors de l’entraînement
+- ### Tester le bon fonctionnement du modèle lors de la prédiction
+- ### Tester le bon fonctionnement des différents endpoints de l’API
+- ### Tester le bon fonctionnement du process d’ingestion de nouvelles données
 Mais également le monitoring du modèle et les décisions qui en découlent :
-- Comment évaluer la performance du modèle à un instant donné ? (évaluation
+- ### Comment évaluer la performance du modèle à un instant donné ? (évaluation
 sur l’intégralité du jeu de test, évaluation sur les données les plus récentes)
-- Quand faut-il ré-entraîner le modèle ? (périodiquement, lorsque les
+- ### Quand faut-il ré-entraîner le modèle ? (périodiquement, lorsque les
 performances sont trop faibles)
-- Sur quelles données faut-il ré-entraîner le modèle ? (sur l’intégralité du jeu de
+- ### Sur quelles données faut-il ré-entraîner le modèle ? (sur l’intégralité du jeu de
 données, sur un échantillon des données les plus récentes…)
-- Que faire lorsque le modèle n’atteint pas le seuil de performance requis ?
+- ### Que faire lorsque le modèle n’atteint pas le seuil de performance requis ?
 (envoyer un mail d’alerte aux personnes concernées, bloquer l’application)
 ## 6) Schéma d’implémentation
 Dans cette partie, vous devrez créer un schéma récapitulatif du projet, qui intègre les
