@@ -159,11 +159,11 @@ prédiction…)
     * credentials
     * portefeuilles
     * profils investisseurs
-    * licences / services autorisés
+    * licences / services autorisés / crédit payé ... etc
     * contrat
     * rôle
     
-    ## base de donnée rentraînement modèles
+    ## base de donnée réentraînement modèles
     
     * base de données agrégeant toutes les mises à jours quotidiennes
     
@@ -181,6 +181,7 @@ prédiction…)
     
     * sauvegarde des prédictions pour accéléré le temps de réponse aux requêtes utilisateurs
     * base de données utilisée pour effectuer les prédictions (base + légère que celle utilisée pour le réentraînement des modèles)
+    * base de donnée de test pour vérifier le bon fonctionnement des modèles
     
     
     
@@ -189,13 +190,27 @@ prédiction…)
     
 
 ## 4) API
-L’API est l’interface entre le modèle, la base de données et l’utilisateur. Il n’est pas
-obligatoire, dans le cadre de ce projet, d’y intégrer une interface graphique. En
-revanche, cette API devra intégrer une notion d’authentification des différents types
-d’utilisateurs/administrateurs qui devront l’utiliser.
-Cette partie doit détailler les différents endpoints que vous souhaitez intégrer à votre
-API, la manière dont cette dernière fera appel à la base de données, au modèle,
-écrire dans les logs et éventuellement modifier la base de données.
+*L’API est l’interface entre le modèle, la base de données et l’utilisateur. Il n’est pas*
+*obligatoire, dans le cadre de ce projet, d’y intégrer une interface graphique. En*
+*revanche, cette API devra intégrer une notion d’authentification des différents types*
+*d’utilisateurs/administrateurs qui devront l’utiliser.*
+*Cette partie doit détailler les différents endpoints que vous souhaitez intégrer à votre*
+*API, la manière dont cette dernière fera appel à la base de données, au modèle,*
+*écrire dans les logs et éventuellement modifier la base de données.*
+
+* authentification
+* admin
+* test API / modèles / nombre erreurs...
+* visu performances modèles
+* visu activités API (nombre de requêtes, nombre utilisateurs... statistiques utilisation)
+* prédictions
+* visualisation des  bases de données ?
+* gestion des bases de données ?
+* gestion des utilisateurs ?
+* mon portefeuille ?
+* mes frais ?
+* mon profil investisseur ?
+
 ## 5) Testing & Monitoring
 Au cours du déploiement de l’application, il sera nécessaire de porter une attention
 particulière au fait que les différentes parties du projet fonctionnent correctement
@@ -203,6 +218,7 @@ individuellement (tests unitaires), et que les performances de l’application s
 toujours en adéquation avec le cahier des charges.
 Cette partie devra détailler les tests unitaires qu’il faudra mettre en oeuvre comme
 par exemple :
+
 - ### Tester le bon fonctionnement du modèle lors de l’entraînement
 - ### Tester le bon fonctionnement du modèle lors de la prédiction
 - ### Tester le bon fonctionnement des différents endpoints de l’API
