@@ -45,10 +45,12 @@
 - ### Qui est le commanditaire de l’application ?
 
     Réalisé dans le cadre de notre formation de MLOps avec DataScientest
+	-> ou : commanditer par un courtier pour ses clients ou par un gérant de fonds
 
 - ### Qui sera l’utilisateur de l’application ?
 
     L’application s’adresse à des tradeurs particuliers, qui n’ont pas la puissance des outils financiers mis à dispositions des tradeurs institutionnels et professionnels et qui désirent pouvoir augmenter leur scope pour détecter des opportunités d’investissement en action. (et minimiser les risques)
+	Et gérant d'actifs actions qui souhaitent une aide à la décision quant à la gestion de leur portefeuille.
 
 - ### Qui sera l’administrateur de l’application ?
 
