@@ -45,7 +45,7 @@
 - ### Qui est le commanditaire de l’application ?
 
     Réalisé dans le cadre de notre formation de MLOps avec DataScientest
-	-> ou : commanditer par un courtier pour ses clients ou par un gérant de fonds
+	-> ou : commandité par un courtier pour ses clients ou par un gérant de fonds
 
 - ### Qui sera l’utilisateur de l’application ?
 
@@ -98,7 +98,7 @@
   Ils sont entraînés sur trois types de jeux de données :
 
   - uniquement les **données de marché** : ouverture, plus haut, plus bas, clôture, volume. Nous calculons ensuite diverses caractéristiques basées sur celles-ci : rendement logarithmique avec différents décalages, valeur de clôture à différentes moyennes mobiles, croisement de moyennes mobiles, volatilité historique, changements de volume avec différents décalages.
-  - uniquement des **données fondamentales** (macroéconomiques, financières des actions) : obligations américaines à 10 ans, VIX, EPS, PEG, ratio cours/bénéfice, rendement des dividendes, surprise des annonces de bénéfices, secteur, etc.
+  - uniquement des **données fondamentales** (données macroéconomiques, données financières des actions) : prix obligations américaines à 10 ans, variation sur 1 mois de celles-ci, VIX, EPS, PEG, ratio cours/bénéfice, rendement des dividendes, surprise des annonces de bénéfices, secteur, etc.
   - à la fois sur les **données de marché** **et** les **données fondamentales**.
 
   <div style="border: 1px solid black; padding: 10px;">Les modèles sont entraînés pour <b>prédire la variation des prix des actions à différents horizons temporels</b>. Plus précisément, comme nous sommes censés obtenir les prix de clôture à la fin de la journée suivante, <b>tous les modèles sont en fait entraînés pour prédire l'horizon + 1 jour</b>.</div>
