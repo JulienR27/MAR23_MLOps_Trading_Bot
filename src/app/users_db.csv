@@ -1,6 +1,5 @@
-username,password,right,
-alice,wonderland,market only,
-bob,builder,fundamental only,
+username,password,right
+alice,wonderland,market only
+bob,builder,fundamental only
 damien,vannetzel,admin
-
-
+julien,chaplet,admin

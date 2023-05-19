@@ -1,9 +1,11 @@
 import numpy as np 
 import pandas as pd
 import sklearn.preprocessing._label as label
-from utils.features_engineering import market_features_engineering, fundamental_features_engineering
-from utils.fetch_data import fetch_stock, fetch_fundamental
-from utils import US_bond_yfinance, VIX
+import sys
+sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
+from src.domain.utils.features_engineering import market_features_engineering, fundamental_features_engineering
+from src.domain.utils.fetch_data import fetch_stock, fetch_fundamental
+from src.domain.utils import US_bond_yfinance, VIX
 
 # Stocks environment (Dow30)
 env_tickers = ["AXP", "AMGN", "AAPL", "BA", "CAT", "CSCO", "CVX", "GS", "HD", "HON", "IBM", "INTC", "JNJ", "KO", "JPM", "MCD", "MMM", "MRK", "MSFT", "NKE", "PG", "TRV", "UNH", "CRM", "VZ", "V", "WBA", "WMT", "DIS", "DOW"]
@@ -31,7 +33,7 @@ def make_prediction(model, sector_encoder: label.LabelEncoder, time_horizon: str
     if not tickers:
         tickers = env_tickers
         
-    X_fundamental = pd.DataFrame()
+    X_fundamental = pd.DataFrame(columns=["date", "stock"]).set_index("date")
     if "fundamental" in trading_type:
         for ticker in tickers:
             # Get fundamental data
@@ -51,7 +53,7 @@ def make_prediction(model, sector_encoder: label.LabelEncoder, time_horizon: str
         # Sector encoding with original label encoder
         X_fundamental.loc[:, "sector"] = sector_encoder.transform(X_fundamental["sector"])
         
-    X_market = pd.DataFrame()
+    X_market = pd.DataFrame(columns=["date", "stock"]).set_index("date")
     if "market" in trading_type: 
         for ticker in tickers:
             # Get at least 200 days of market data to compute features (for MA_200) 

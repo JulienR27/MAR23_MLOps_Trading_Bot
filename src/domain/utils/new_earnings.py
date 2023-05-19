@@ -14,7 +14,7 @@ def search_symbol(symbol, driver):
     elem = driver.find_element(By.ID, "ticker")
     elem.send_keys(symbol)
     elem.send_keys(Keys.RETURN)
-    driver.implicitly_wait(3)
+    #driver.implicitly_wait(3)
 
 def find_estim_tables(driver):
     '''
@@ -50,7 +50,7 @@ def find_estim_tables(driver):
     
     return earnings
 
-def find_divid_tables(driver):
+def find_divid_tables(driver, inference=False):
     '''
     get a table with dividends on a page  ZACK
     '''
@@ -59,10 +59,12 @@ def find_divid_tables(driver):
     
     elem = driver.find_element(By.XPATH, '//*[@id="ui-id-7"]')
     elem.click()
-    time.sleep(3)
-    #Expand 100 records
-    dropdown = driver.find_element(By.NAME, "earnings_announcements_dividends_table_length")
-    Select(dropdown).select_by_visible_text("100")
+    #time.sleep(3) # try with comment
+    
+    #Expand 100 records if training
+    if not inference:
+        dropdown = driver.find_element(By.NAME, "earnings_announcements_dividends_table_length")
+        Select(dropdown).select_by_visible_text("100")
     
     #Find required table
     elem = driver.find_element(By.XPATH, '//*[@id="earnings_announcements_dividends_table"]') 
@@ -103,21 +105,21 @@ def get_earn_and_dividends(symbol, inference=False):
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
     
-    #Search stock
-    search_symbol(symbol, driver)
+    # #Search stock
+    # search_symbol(symbol, driver)
     
+    #expand_100_earnings values if training
     if not inference:
-        #expand_100_earnings values if training
         dropdown = driver.find_element(By.NAME, "earnings_announcements_earnings_table_length")
         Select(dropdown).select_by_visible_text("100")
         time.sleep(3)
     
     #Get earnings
     earnings = find_estim_tables(driver)
-    time.sleep(3)
+    #time.sleep(3) # try to comment
     
     #Get dividends
-    dividends = find_divid_tables(driver)
+    dividends = find_divid_tables(driver, inference)
     
 # =============================================================================
 #     #Get fundamentals
