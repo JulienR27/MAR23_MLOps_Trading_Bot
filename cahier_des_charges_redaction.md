@@ -1,18 +1,13 @@
 <img src="./assets/image-20230514163219621.png" alt="image-20230514163219621" style="zoom:25%;" />
 
-# Cahier des charges projet MLOps
-*Le cahier des charges est primordial dans la réalisation d’un projet, ce dernier doit*
-*vous permettre de suivre une ligne directrice tout au long de votre projet. Il ne doit*
-*pas être négligé. Celui-ci devrait faire entre 3 et 7 pages.*
+# Cahier des charges projet MLOps tradingbot.fr
+
 
 ## 1) Contexte et Objectifs
-*Le but de cette partie est de définir les parties prenantes, et le cadre dans lequel*
-*s’intègre le projet. Soyez le plus précis possible, n’hésitez pas à être créatif. Il n’y a*
-*pas une seule solution pour cette partie, et nous n’attendons pas à ce que vous*
-*aboutissiez à quelque chose d’opérationnel à l’issue du projet. L’objectif est d’avoir*
-*une ligne directrice pour le projet qui vous permettra de prendre des décisions au fur*
-*et à mesure.*
-*Cette partie devra répondre notamment aux questions suivantes :*
+
+## Introduction
+
+Ce projet à pour vocation de développer une API permettant aux utilisateurs d'obtenir des prédictions sur des actifs boursiers. Les actifs utilisés se limiteront à environ 500 sociétés cotées sur le marché américains. Dans un premier temps, le projet sera développé en local avec pour objectif de l'intégrer dans un serveur Cloud. Ce serveur a déjà été monté, il heberge une base de donnée phpmyadmin et un nom de domaine a été acquis (tradingbot.fr).
 
 - ### A quelle problématique l’application doit-elle répondre ?
 
@@ -139,57 +134,21 @@
 du projet (accuracy, robustesse, temps d’entraînement, temps de
 prédiction…)
 ## 3) Base de données
-*Cette partie doit vous permettre de définir les données que vous utiliserez pour*
-*réaliser ce projet. Bien souvent, vous aurez accès dans le cadre de ce projet à des*
-*données “statiques”, qui n’évolueront pas tout au long du projet. Cependant, en*
-*général dans le cadre d’un projet MLOps en entreprise, les données évoluent au*
-*cours du temps (suite à l’ajout de nouvelles données et à la correction de certaines*
-*anciennes). Il sera donc nécessaire de discuter à la fois de la base de données à*
-*laquelle vous avez véritablement accès, et de celle à laquelle vous devriez avoir*
-*accès dans l’hypothèse d’un projet d’entreprise.*
-*Une attention particulière sera portée sur la gestion de l’ingestion de nouvelles*
-*données.*
-*Il est recommandé d’ajouter des images de la base de données (ou de son schéma*
-*d’architecture) pour faciliter la compréhension.*
 
-* Donnée accessible via l’API de Tiingo ?
+Dans un premier temps, les données seront utilisées via des fichiers .csv.
+Un fichier users_bd.csv a été créé pour lister les différents users qui ont accès à l'API ainsi que les autorisations associées à ces users.
 
-* Scrapping ?
+Un fichier issue d'un scraping sur l'API Tiingo sera utilisé pour les données fondamentales des actifs qui seront étudiées par les modèles de ML et il en sera de même pour les coûrs de bourse.
 
-    ## base de donnée utilisateurs
+Dans un deuxième temps, une base de donnée hébergée dans un serveur cloud sera utilisée. L'interface utilisée pour la gestion de la base de donnée sera "phpmyadmin". Elle sera composée de plusieurs tables et sera peuplé à travers des cron de scraping.
 
-    * credentials
-    * portefeuilles
-    * profils investisseurs
-    * licences / services autorisés / crédit payé ... etc
-    * contrat
-    * rôle
-    
-    ## base de donnée réentraînement modèles
-    
-    * base de données agrégeant toutes les mises à jours quotidiennes
-    
-    * modèles en production
-    
-    * sauvegarde des anciens modèles (remplacés par de plus performants)
-    
-    * nouveaux modèles en cours de validation (qui remplaceront ou non ceux en production)
-    
-    * modèles produits par autoML ???
-    
-        
-    
-    ## base de donnée prédiction des modèles
-    
-    * sauvegarde des prédictions pour accéléré le temps de réponse aux requêtes utilisateurs
-    * base de données utilisée pour effectuer les prédictions (base + légère que celle utilisée pour le réentraînement des modèles)
-    * base de donnée de test pour vérifier le bon fonctionnement des modèles
-    
-    
-    
-    
-    
-    
+La base de donnée sera composée des tables suivantes :
+    * users => liste des utilisateurs ayant accès à l'API avec leurs accréditations
+    * assets => liste des actifs nécessaire au bon fonctionnement des modèles de ML
+    * sectors => liste des secteurs associées aux actifs de la table assets
+    * financials => données financières fondamentales associées aux actifs de la table assets
+    * quotes => cours de bourse quotidien associés aux actifs de la table assets
+
 
 ## 4) API
 *L’API est l’interface entre le modèle, la base de données et l’utilisateur. Il n’est pas*
@@ -243,3 +202,8 @@ https://app.diagrams.net/ ou https://docs.google.com/drawings
 Voici un exemple de Schéma d’implémentation :
 
 ![image-20230514163206743](./assets/image-20230514163206743.png)
+
+## 6) Projet cloud
+Un serveur a été monté dans le Cloud setupé et un nom de domaine a été acheté. Chacun des membre de l'équipe travaille depuis ce serveur. Ce serveur heberge la base de données qui servira au bon fonctionnement de l'API lorsque son fonctionnement sera adapté pour fonctionné dans le Cloud.
+
+L'objectif est de pouvoir présenter une version opérationnelle de l'API dans le cloud, qui communique avec la base de données phpmyadmin qui aura été construite.
