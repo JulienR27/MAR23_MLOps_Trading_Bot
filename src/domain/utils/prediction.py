@@ -3,9 +3,9 @@ import pandas as pd
 import sklearn.preprocessing._label as label
 import sys
 sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
-from src.domain.utils.features_engineering import market_features_engineering, fundamental_features_engineering
-from src.domain.utils.fetch_data import fetch_stock, fetch_fundamental
-from src.domain.utils import US_bond_yfinance, VIX
+from .features_engineering import market_features_engineering, fundamental_features_engineering
+from .fetch_data import fetch_stock, fetch_fundamental
+from . import US_bond_yfinance, VIX
 
 # Stocks environment (Dow30)
 env_tickers = ["AXP", "AMGN", "AAPL", "BA", "CAT", "CSCO", "CVX", "GS", "HD", "HON", "IBM", "INTC", "JNJ", "KO", "JPM", "MCD", "MMM", "MRK", "MSFT", "NKE", "PG", "TRV", "UNH", "CRM", "VZ", "V", "WBA", "WMT", "DIS", "DOW"]
