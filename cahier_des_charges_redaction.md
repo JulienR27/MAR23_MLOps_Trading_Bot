@@ -203,7 +203,7 @@ Voici un exemple de Schéma d’implémentation :
 
 ![image-20230514163206743](./assets/image-20230514163206743.png)
 
-## 6) Projet cloud
+## 7) Projet cloud
 Un serveur a été monté dans le Cloud setupé et un nom de domaine a été acheté. Chacun des membre de l'équipe travaille depuis ce serveur. Ce serveur heberge la base de données qui servira au bon fonctionnement de l'API lorsque son fonctionnement sera adapté pour fonctionné dans le Cloud.
 
 L'objectif est de pouvoir présenter une version opérationnelle de l'API dans le cloud, qui communique avec la base de données phpmyadmin qui aura été construite.
