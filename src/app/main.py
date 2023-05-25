@@ -23,7 +23,7 @@ api = FastAPI(
 security = HTTPBasic()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-users_db = pd.read_csv("app/users_db.csv")
+users_db = pd.read_csv("users_db.csv")
 
 def get_current_user(credentials: HTTPBasicCredentials = Depends(security)):
     username = credentials.username
