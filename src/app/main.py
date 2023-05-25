@@ -6,6 +6,7 @@ from typing import Optional, List
 import pandas as pd
 from csv import DictWriter
 from joblib import load
+import uvicorn
 import sys, os
 from pathlib import Path
 current_path = Path(os.getcwd())
@@ -192,3 +193,12 @@ def predict_best_stocks(params: ParamsBest, right: str = Depends(get_current_use
    
    except ValueError:
       raise HTTPException(status_code=404, detail='You may have exceeded the requests limit')
+
+if __name__ == '__main__':
+    uvicorn.run(
+        'main:api',
+        host="51.77.222.243",
+        port=8000,
+        ssl_certfile="/etc/letsencrypt/live/tradingbot.fr/fullchain.pem",
+        ssl_keyfile="/etc/letsencrypt/live/tradingbot.fr/privkey.pem"
+        )
