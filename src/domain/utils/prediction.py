@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import sklearn.preprocessing._label as label
 import sys
-sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
+#sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
 from src.domain.utils.features_engineering import market_features_engineering, fundamental_features_engineering
 from src.domain.utils.fetch_data import fetch_stock, fetch_fundamental
 from src.domain.utils import US_bond_yfinance, VIX
