@@ -1,9 +1,13 @@
 import os
 import requests
+from requests.auth import HTTPBasicAuth
 import json
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # définition de l'adresse de l'API
-api_address = "127.0.0.1"  # os.environ.get('API_ADDRESS')
+api_address = "51.77.222.243"  # os.environ.get('API_ADDRESS')
+
 # port de l'API
 api_port = "8000"  # os.environ.get('API_PORT')
 
@@ -16,7 +20,8 @@ users = [
 ]
 
 queries = [
-    {'tickers': ['AAPL', 'GOOG'], 'time_horizon': '1y', 'trading_type': 'long'},
+    {'tickers': ['AAPL', 'GOOG'], 'time_horizon': '1d', 'trading_type': 'long'},
+    {'tickers': ['AAPL', 'GOOG'], 'time_horizon': '1w', 'trading_type': 'long'},
     {'tickers': ['TSLA', 'FB'], 'time_horizon': '6m', 'trading_type': 'short'}
 ]
 
@@ -24,9 +29,10 @@ for user in users:
     for query in queries:
         # requête
         r = requests.post(
-            url='http://{address}:{port}/predictions'.format(address=api_address, port=api_port),
+            url='https://{address}:{port}/predictions'.format(address=api_address, port=api_port),
             json=query,
-            auth=(user['username'], user['password'])
+        auth=HTTPBasicAuth(user['username'], user['password']),
+        verify=False  # Ignore SSL verification
         )
         response.append([user['username'], query, r.json(), r])
 

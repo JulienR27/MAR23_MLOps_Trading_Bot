@@ -13,7 +13,7 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Ajouter les variables d'environnement nécessaires
-ENV API_ADDRESS="localhost"
+ENV API_ADDRESS="51.77.222.243cd"
 ENV API_PORT="8000"
 ENV LOG="1"
 
