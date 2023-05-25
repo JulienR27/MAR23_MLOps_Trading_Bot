@@ -7,6 +7,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # définition de l'adresse de l'API
 api_address = "51.77.222.243"  # os.environ.get('API_ADDRESS')
+
 # port de l'API
 api_port = "8000"  # os.environ.get('API_PORT')
 
