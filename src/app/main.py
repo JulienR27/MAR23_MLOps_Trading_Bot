@@ -6,9 +6,13 @@ from typing import Optional, List
 import pandas as pd
 from csv import DictWriter
 from joblib import load
-import sys
-sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
-from domain.utils.prediction import make_prediction
+import sys, os
+from pathlib import Path
+current_path = Path(os.getcwd())
+project_path = current_path.parent.parent.as_posix()
+sys.path.append(project_path)
+from src.domain.utils.prediction import make_prediction
+
 
 api = FastAPI(
    title="Trading Bot API",
@@ -134,9 +138,9 @@ def predict(params: Params, right: str = Depends(get_current_user)):
     
   
     # Loading the right model
-    model = load(f'C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot/src/domain/trained_models/lgbm_{params.trading_type}_{params.time_horizon}.joblib') 
+    model = load(f'{project_path}/src/domain/trained_models/lgbm_{params.trading_type}_{params.time_horizon}.joblib') 
     # Loading sector encoder
-    sector_encoder = load('C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot/src/domain/trained_models/label_encoder.joblib') 
+    sector_encoder = load(f'{project_path}/src/domain/trained_models/label_encoder.joblib') 
     try:   
        # Making the predictions
         predictions = make_prediction(model, sector_encoder, params.time_horizon, params.trading_type, params.tickers)
@@ -174,9 +178,9 @@ def predict_best_stocks(params: ParamsBest, right: str = Depends(get_current_use
    
  
    # Loading the right model
-   model = load(f'C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot/src/domain/trained_models/lgbm_{params.trading_type}_{params.time_horizon}.joblib') 
+   model = load(f'{project_path}/src/domain/trained_models/lgbm_{params.trading_type}_{params.time_horizon}.joblib') 
    # Loading sector encoder
-   sector_encoder = load('C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot/src/domain/trained_models/label_encoder.joblib') 
+   sector_encoder = load(f'{project_path}/src/domain/trained_models/label_encoder.joblib') 
    try:   
        # Making the predictions
        predictions = make_prediction(model, sector_encoder, params.time_horizon, params.trading_type)

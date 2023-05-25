@@ -4,8 +4,8 @@ from datetime import date
 import requests
 import yfinance as yf
 import sys
-sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
-from . import new_earnings
+#sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
+from src.domain.utils import new_earnings
 
 Tiingo_API = "070e58c9f4bc1e4a5239300dad12ae1c4a87c892"
 
