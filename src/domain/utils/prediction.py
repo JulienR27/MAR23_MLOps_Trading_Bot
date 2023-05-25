@@ -7,6 +7,7 @@ from src.domain.utils.features_engineering import market_features_engineering, f
 from src.domain.utils.fetch_data import fetch_stock, fetch_fundamental
 from src.domain.utils import US_bond_yfinance, VIX
 
+
 # Stocks environment (Dow30)
 env_tickers = ["AXP", "AMGN", "AAPL", "BA", "CAT", "CSCO", "CVX", "GS", "HD", "HON", "IBM", "INTC", "JNJ", "KO", "JPM", "MCD", "MMM", "MRK", "MSFT", "NKE", "PG", "TRV", "UNH", "CRM", "VZ", "V", "WBA", "WMT", "DIS", "DOW"]
 
