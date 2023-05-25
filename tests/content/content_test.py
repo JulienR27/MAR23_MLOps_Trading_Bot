@@ -16,7 +16,8 @@ users = [
 ]
 
 queries = [
-    {'tickers': ['AAPL', 'GOOG'], 'time_horizon': '1y', 'trading_type': 'long'},
+    {'tickers': ['AAPL', 'GOOG'], 'time_horizon': '1d', 'trading_type': 'long'},
+    {'tickers': ['AAPL', 'GOOG'], 'time_horizon': '1w', 'trading_type': 'long'},
     {'tickers': ['TSLA', 'FB'], 'time_horizon': '6m', 'trading_type': 'short'}
 ]
 
