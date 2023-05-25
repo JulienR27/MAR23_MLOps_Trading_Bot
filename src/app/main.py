@@ -8,7 +8,7 @@ from csv import DictWriter
 from joblib import load
 import sys
 sys.path.append("C:/Users/Julien/Documents/EI/Datascientest/MLOps/Projet/MAR23_MLOps_Trading_Bot")
-from src.domain.utils.prediction import make_prediction
+from domain.utils.prediction import make_prediction
 
 api = FastAPI(
    title="Trading Bot API",
@@ -19,7 +19,7 @@ api = FastAPI(
 security = HTTPBasic()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-users_db = pd.read_csv("users_db.csv")
+users_db = pd.read_csv("app/users_db.csv")
 
 def get_current_user(credentials: HTTPBasicCredentials = Depends(security)):
     username = credentials.username
