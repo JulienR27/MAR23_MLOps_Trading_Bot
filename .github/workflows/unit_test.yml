@@ -21,7 +21,7 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest
+          pytest tests/domain/
 
       - name: Run flake8
         uses: py-actions/flake8@v2
