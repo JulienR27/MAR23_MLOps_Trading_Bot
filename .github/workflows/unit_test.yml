@@ -21,9 +21,7 @@ jobs:
 
       - name: Run tests
         env:
-          PANTHER_CHROME_ARGUMENTS: "--disable-dev-shm-usage"
-          PANTHER_CHROME_DRIVER_BINARY: "/usr/bin/chromedriver"
-          PANTHER_NO_SANDBOX: "1"
+          CHROMEWEBDRIVER: "usr/local/share/chrome_driver/chromedriver"
         run: |
           pytest tests/domain/
 
