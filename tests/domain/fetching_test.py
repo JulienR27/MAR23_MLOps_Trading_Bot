@@ -13,7 +13,5 @@ def test_fetch_fundamental():
 
 def test_fetch_stock():
     market = fetch_stock("AAPL")
-    liste = list(market.columns)
-    liste.pop(0)
-    assert all(feature in liste
+    assert all(feature in list(market.columns)
                for feature in ['close', 'high', 'low', 'open', 'volume'])
