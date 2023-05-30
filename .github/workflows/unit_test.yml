@@ -25,7 +25,10 @@ jobs:
       - name: Run flake8
         uses: py-actions/flake8@v2
         with:
-          ignore: "F401"
+          ignore: |
+            "F501"
+            "E251"
+            "W292"
           path: "tests"
 
       - name: Run API
