@@ -3,8 +3,8 @@ from datetime import date
 import pandas as pd
 import numpy as np
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service # new line caused by DeprecationWarning: executable_path has been deprecated, please pass in a Service object
 from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.chrome.service import Service # new line caused by DeprecationWarning: executable_path has been deprecated, please pass in a Service object
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
