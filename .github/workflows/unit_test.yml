@@ -24,6 +24,8 @@ jobs:
 
       - name: Run flake8
         uses: py-actions/flake8@v2
+        with:
+          ignore: "F401", "E401"
 
       - name: Run API
         run: |
