@@ -10,11 +10,11 @@ def test_fetch_fundamental():
                                'Amount', 'dividends_change', 'prev_div_change',
                                'days_after_divid_report', 'sector', 'industry']
                )
-    assert not(fundamental.empty)
+    assert not fundamental.empty
 
 
 def test_fetch_stock():
     market = fetch_stock("AAPL")
     assert all(feature in list(market.columns)
                for feature in ['close', 'high', 'low', 'open', 'volume'])
-    assert not(market.empty)
+    assert not market.empty
