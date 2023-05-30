@@ -1,52 +1,23 @@
 version: "3.9"
 services:
   api:
-    image: datascientest/fastapi:1.0.0
-    container_name: exam_api
+    image: trading_api:latest
+    container_name: trading_api
     networks:
-      - exam_network
+      - api_network
     ports:
       - target: 8000
         published: 8000
         protocol: tcp
         mode: host
-  authentification:
-    image: authentification_test:latest
-    container_name: authentification_test
+  tests:
+    image: tests_api:latest
+    container_name: api_test
     depends_on:
       - api
     networks:
-      - exam_network
-    volumes:
-      - app_log:/app/log
-    environment:
-      LOG: 1
-  authorization:
-    image: authorization_test:latest
-    container_name: authorization_test
-    depends_on:
-      - api
-      - authentification
-    networks:
-      - exam_network
-    volumes:
-      - app_log:/app/log
-    environment:
-      LOG: 1
-  content:
-    image: content_test:latest
-    container_name: content_test
-    depends_on:
-      - api
-      - authentification
-      - authorization
-    networks:
-      - exam_network
-    volumes:
-      - app_log:/app/log
-    environment:
-      LOG: 1
+      - api_network
 networks:
-  exam_network:
+  api_network:
 volumes:
   app_log:
