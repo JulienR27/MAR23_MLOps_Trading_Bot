@@ -26,7 +26,7 @@ jobs:
         uses: py-actions/flake8@v2
         with:
           ignore: |
-            "F501"
+            "E501"
             "E251"
             "W292"
           path: "tests"
