@@ -8,10 +8,13 @@ def test_fetch_fundamental():
                                'epsQoQ', 'surprise_%', 'expected_growth',
                                'previous_surprise', 'days_after_earn_report',
                                'Amount', 'dividends_change', 'prev_div_change',
-                               'days_after_divid_report', 'sector', 'industry'])
+                               'days_after_divid_report', 'sector', 'industry']
+               )
+    assert not(fundamental.empty)
 
 
 def test_fetch_stock():
     market = fetch_stock("AAPL")
     assert all(feature in list(market.columns)
                for feature in ['close', 'high', 'low', 'open', 'volume'])
+    assert not(market.empty)
