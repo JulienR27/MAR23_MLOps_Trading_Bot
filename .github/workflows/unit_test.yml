@@ -24,3 +24,7 @@ jobs:
 
       - name: Run flake8
         uses: py-actions/flake8@v2
+
+      - name: Run API
+        run: |
+          uvicorn src/app/main:api
