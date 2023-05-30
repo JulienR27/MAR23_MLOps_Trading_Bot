@@ -13,14 +13,12 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install pytest and flake8
+      - name: Install pytest and necessary libraries
         run: |
           pip install pytest
           pip install -r requirements.txt
 
       - name: Run tests
-        env:
-          CHROMEWEBDRIVER: "usr/local/share/chrome_driver/chromedriver"
         run: |
           pytest tests/domain/
 
