@@ -8,5 +8,5 @@ from src.domain.utils.fetch_data import fetch_stock, fetch_fundamental
 
 def test_fetch_stock():
     market = fetch_stock("AAPL")
-    assert all(feature in list(market.columns) 
+    assert all(feature in list(market.columns)
                for feature in ['close', 'high', 'low', 'open', 'volume'])
