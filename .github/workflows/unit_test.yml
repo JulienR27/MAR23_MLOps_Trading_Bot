@@ -33,5 +33,5 @@ jobs:
 
       - name: Run API
         run: |
-          uvicorn src.app.main:api
-        with: src/app/users_db.csv
+          cd src/app/
+          uvicorn main:api
