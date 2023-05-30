@@ -33,4 +33,4 @@ jobs:
 
       - name: Run API
         run: |
-          uvicorn src/app/main:api
+          uvicorn src.app.main:api
