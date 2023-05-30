@@ -1,0 +1,5 @@
+FROM debian:latest
+RUN apt-get update && apt-get install python3-pip -r requirements_api.txt -y && pip3 install pytest
+ADD src/ src/
+WORKDIR /src/app
+CMD uvicorn main:api
