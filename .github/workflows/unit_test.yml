@@ -35,3 +35,4 @@ jobs:
         run: |
           cd src/app/
           uvicorn main:api
+          ^C
