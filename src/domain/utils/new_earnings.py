@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome.service import Service # new line caused by DeprecationWarning: executable_path has been deprecated, please pass in a Service object
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -100,7 +101,8 @@ def get_earn_and_dividends(symbol, inference=False):
     This function launches browser for data load and fetches earnings and dividends data
     '''
     #Start Chrome 
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    #driver = webdriver.Chrome(ChromeDriverManager().install()) #deprecated
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     #driver = webdriver.Chrome('/home/user/drivers/chromedriver')
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
