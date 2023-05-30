@@ -34,3 +34,4 @@ jobs:
       - name: Run API
         run: |
           uvicorn src.app.main:api
+        with: src/app/users_db.csv
