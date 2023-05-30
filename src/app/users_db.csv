@@ -2,6 +2,6 @@ username,password,right
 alice,wonderland,market
 bob,builder,fundamental
 damien,vannetzel,admin
-julien,chaplet,admin
+julien,chaplet,market
 jean-antoine,grau,admin
-jerome,kerviel,market_and_fundamental
+jerome,kerviel,market_and_fundamental
