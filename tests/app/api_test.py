@@ -1,4 +1,3 @@
-import os
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -12,7 +11,7 @@ def test_authentification():
     tested_users = [{
             'username': 'alice',
             'password': 'wonderland'
-        },
+                    },
         {
             'username': 'bob',
             'password': 'builder'
@@ -21,7 +20,7 @@ def test_authentification():
             'username': 'clementine',
             'password': 'mandarine'
         }
-        ]
+                    ]
 
     expected_results = [200, 200, 403]
 
