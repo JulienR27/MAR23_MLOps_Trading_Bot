@@ -11,7 +11,7 @@ services:
         protocol: tcp
         mode: host
   tests:
-    image: tests_api:latest
+    image: api_test:latest
     container_name: api_test
     depends_on:
       - api
