@@ -7,19 +7,11 @@ api_address = "172.17.0.2"  # os.environ.get('API_ADDRESS')
 # port de l'API
 api_port = "8000"  # os.environ.get('API_PORT')
 
+
 def test_authentification():
-    tested_users = [{
-            'username': 'alice',
-            'password': 'wonderland'
-                    },
-        {
-            'username': 'bob',
-            'password': 'builder'
-        },
-        {
-            'username': 'clementine',
-            'password': 'mandarine'
-        }
+    tested_users = [{'username': 'alice', 'password': 'wonderland'},
+                    {'username': 'bob', 'password': 'builder'},
+                    {'username': 'clementine', 'password': 'mandarine'}
                     ]
 
     expected_results = [200, 200, 403]
@@ -29,7 +21,7 @@ def test_authentification():
         r_ = requests.get(
             url='http://{address}:{port}/permissions'.format(address=api_address, port=api_port),
             auth=HTTPBasicAuth(tested_user['username'], tested_user['password'])
-        )
+                        )
         r.append(r_)
 
     for i, r_ in enumerate(r):
