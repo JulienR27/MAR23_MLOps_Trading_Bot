@@ -1,4 +1,6 @@
-<img src="./assets/image-20230514163219621.png" alt="image-20230514163219621" style="zoom:25%;" />
+
+
+<img src="./assets/DSTstlogo.PNG" alt="logo_Datascientest.com" style="zoom:25%;" />
 
 # Cahier des charges projet MLOps tradingbot.fr
 
@@ -194,14 +196,13 @@ données, sur un échantillon des données les plus récentes…)
 - ### Que faire lorsque le modèle n’atteint pas le seuil de performance requis ?
 (envoyer un mail d’alerte aux personnes concernées, bloquer l’application)
 ## 6) Schéma d’implémentation
-Dans cette partie, vous devrez créer un schéma récapitulatif du projet, qui intègre les
-différentes composantes du projet et leurs intéractions. Ce dernier n’a pas besoin
-d’être normalisé mais devra respecter un code couleur compréhensible et se doit
-d’être le plus exhaustif possible. Vous pourrez pour ce faire vous aider des outils
-https://app.diagrams.net/ ou https://docs.google.com/drawings
-Voici un exemple de Schéma d’implémentation :
+Schéma récapitulatif du projet, les différentes composantes du projet et leurs interactions. 
 
-![image-20230514163206743](./assets/image-20230514163206743.png)
+code couleur compréhensible 
+
+![Schema_implementation_v12](./images_cahier_des_charges/Schema_implementation_v12.jpg)
+
+[Schéma d’implémentation](assets\Schema_implementation_v12.jpg)
 
 ## 7) Projet cloud
 Un serveur a été monté dans le Cloud setupé et un nom de domaine a été acheté. Chacun des membre de l'équipe travaille depuis ce serveur. Ce serveur heberge la base de données qui servira au bon fonctionnement de l'API lorsque son fonctionnement sera adapté pour fonctionner dans le Cloud.
