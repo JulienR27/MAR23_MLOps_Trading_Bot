@@ -202,7 +202,7 @@ code couleur compréhensible
 
 ![Schema_implementation_v12](./images_cahier_des_charges/Schema_implementation_v12.jpg)
 
-[Schéma d’implémentation](assets\Schema_implementation_v12.jpg)
+[Schéma d’implémentation](assets/Schema_implementation_v12.jpg)
 
 ## 7) Projet cloud
 Un serveur a été monté dans le Cloud setupé et un nom de domaine a été acheté. Chacun des membre de l'équipe travaille depuis ce serveur. Ce serveur heberge la base de données qui servira au bon fonctionnement de l'API lorsque son fonctionnement sera adapté pour fonctionner dans le Cloud.
