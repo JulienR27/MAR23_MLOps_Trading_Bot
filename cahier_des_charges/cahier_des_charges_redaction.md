@@ -84,47 +84,25 @@ Ce projet à pour vocation de développer une API permettant aux utilisateurs d'
   
   
 ## 2) Modèle
-*Au cours de ce projet, vous ne serez pas évalués sur la complexité, la performance*
-*et la vitesse d’exécution du modèle. En revanche, vous serez évalué sur votre*
-*capacité à déployer, monitorer et maintenir ce dernier.*
-*Cette partie devra détailler notamment :*
 
-- ### Le type de modèle employé et une rapide explication de son fonctionnement
-  Tous les modèles sont des **modèle de régression LightGBM** visant à prédire la **variation future des prix des actions** américaines.
+- ### Type de modèle employé
+  Le modèle uilisé visera donc à prédire la variation de cours des actions à plusieurs horizons de temps et avec différents types de données d'entrée.
+  Nous employons ici un **modèle de régression LightGBM**. A l'instar du fameux XGBoost, ce dernier est basé sur un modèle d'apprentissage d'ensemble séquentiel, créé par des chercheurs de Microsoft, se basant sur le renforcement de gradient et des arbres de décision (GBDT ou Gradient Boosting decision Trees). Il tend d'ailleurs à le remplacer comme modèle phare des challenges de DataScience comme Kaggle.
+  Dans ces modèles, les arbres de décisions sont combinés de manière à ce que chaque nouvel apprenant ajuste les résidus de l'arbre précédent afin que le modèle s'améliore. Le dernier arbre ajouté regroupe les résultats de chaque étape et un apprenant puissant est atteint.
+  Mais LightGBM vise à résoudre le problème du temps et de la puissance de calcul pour la construction des arbres de l'algorithme CART, en introduisant les notions de GOSS (Gradient-based One-Side Sampling ou échantillonnage d'un côté en dégradé) et EFB (Exclusive Feature Bundling ou Offre groupée de fonctionnalités exclusives).
+  Ce modèle a donc été choisi pour ses performances : il est beaucoup plus rapide que XGBoost et moins sujet au sur-apprentissage sur de grandes quantités de données.
 
-  Ils sont entraînés sur trois types de jeux de données :
+  Etant donné qu'on souhaite proposer des modèles basés sur différentes entrées, ils seront entraînés sur trois types de jeux de données :
+  - les **données de marché** uniquement: ouverture, plus haut, plus bas, clôture, volume. Nous calculons ensuite diverses caractéristiques basées sur celles-ci : rendement logarithmique sur différentes périodes retardées, position de la clôture de la veille par rapport à différentes moyennes mobiles, croisement de moyennes mobiles, volatilité historique, variation de volume sur différentes périodes.
+  - des **données fondamentales** uniquement (données macroéconomiques et données financières des entreprises) : prix des obligations américaines à 10 ans, variation sur 1 mois de celles-ci, VIX, EPS, ratio cours/bénéfice, PEG ratio, rendement des dividendes, taux de surprise lors des annonces de bénéfices, secteur, etc...
+  - à la fois sur les **données de marché** et les **données fondamentales**.
 
-  - uniquement les **données de marché** : ouverture, plus haut, plus bas, clôture, volume. Nous calculons ensuite diverses caractéristiques basées sur celles-ci : rendement logarithmique avec différents décalages, valeur de clôture à différentes moyennes mobiles, croisement de moyennes mobiles, volatilité historique, changements de volume avec différents décalages.
-  - uniquement des **données fondamentales** (données macroéconomiques, données financières des actions) : prix obligations américaines à 10 ans, variation sur 1 mois de celles-ci, VIX, EPS, PEG, ratio cours/bénéfice, rendement des dividendes, surprise des annonces de bénéfices, secteur, etc.
-  - à la fois sur les **données de marché** **et** les **données fondamentales**.
-
-  <div style="border: 1px solid black; padding: 10px;">Les modèles sont entraînés pour <b>prédire la variation des prix des actions à différents horizons temporels</b>. Plus précisément, comme nous sommes censés obtenir les prix de clôture à la fin de la journée suivante, <b>tous les modèles sont en fait entraînés pour prédire l'horizon + 1 jour</b>.</div>
-
-  **<u>liste des modèles actuels :</u>**
-
-  * lgbm_market_1d: trained on market data only to predict tomorrow price variation
-
-  * lgbm_market_1w: trained on market data only to predict price change in one week
-
-  * lgbm_market_2w: trained on market data only to predict price change in two weeks
-
-  * lgbm_market_1m: trained on market data only to predict price change in one month
-
-  * lgbm_fundamental_1d: trained on fundamental data only to predict tomorrow price variation
-
-  * lgbm_fundamental_1w: trained on fundamental data only to predict price change in one week
-
-  * lgbm_fundamental_2w: trained on fundamental data only to predict price change in two weeks
-
-  * lgbm_fundamental_1m: trained on fundamental data only to predict price change in one month
-
-  * lgbm_market_and_fundamental_1d: trained on market and fundamental data to predict tomorrow price variation
-
-  * lgbm_market_and_fundamental_1w: trained on market and fundamental data to predict price change in one week
-
-  * lgbm_market_and_fundamental_2w: trained on market and fundamental data to predict price change in two weeks
-
-  * lgbm_market_and_fundamental_data_1m: trained on market and fundamental data to predict price change in one month
+  Nous souhaitons également proposé des prédictions à différents horizons de temps pour coller aux besoins des utilisateurs. Les modèles seront donc entraînés pour faire des prédictions à :
+  - un jour
+  - une semaine
+  - deux semaines
+  - un mois
+  Comme nous récupèrerons les prix de clôture de la veille, tous les modèles sont en fait entraînés pour prédire l'horizon en **question + 1 jour**.
 
   **<u>Performances générales :</u>**
   
@@ -138,11 +116,17 @@ prédiction…)
 ## 3) Base de données
 
 Dans un premier temps, les données seront utilisées via des fichiers .csv.
-Un fichier users_bd.csv a été créé pour lister les différents users qui ont accès à l'API ainsi que les autorisations associées à ces users.
+Un fichier users_bd.csv sera créé pour lister les différents users qui ont accès à l'API ainsi que les autorisations associées à ces users.
 
-Un fichier issue d'un scraping sur l'API Tiingo sera utilisé pour les données fondamentales des actifs qui seront étudiées par les modèles de ML et il en sera de même pour les coûrs de bourse.
+Dans un premier temps, la prédiction se fera directement en allant chercher les données à la source, c’est-à-dire :
+-	L’api de Tiingo pour les données de marchés
+-	Le scrapping du site Zacks.com, du site Yahoo Finance pour les données financières des entreprises
+-	L’api du site Yahoo Finance pour les données le prix des obligations américaines 10 ans
+-	L’api du site du Chicago Board Exchange pour le VIX
+Afin d’accélérer le traitement des demandes, nous envisageons de récupérer ces données quotidiennement pour les stocker dans une base de données.
+Cela nous donnera aussi la possibilité de mettre en place un pipeline de réentrainement des modèles, prévu dans un second temps.
 
-Dans un deuxième temps, une base de donnée hébergée dans un serveur cloud sera utilisée. L'interface utilisée pour la gestion de la base de donnée sera "phpmyadmin". Elle sera composée de plusieurs tables et sera peuplé à travers des cron de scraping.
+Cette base de donnée sera hébergée dans un serveur cloud. L'interface utilisée pour la gestion de la base de donnée sera "phpmyadmin". Elle sera composée de plusieurs tables et sera peuplé de manière journalière à travers des cron.
 
 La base de donnée sera composée des tables suivantes :
     * users => liste des utilisateurs ayant accès à l'API avec leurs accréditations
