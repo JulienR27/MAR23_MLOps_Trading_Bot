@@ -102,6 +102,7 @@ Ce projet à pour vocation de développer une API permettant aux utilisateurs d'
   - une semaine
   - deux semaines
   - un mois
+  
   Comme nous récupèrerons les prix de clôture de la veille, tous les modèles sont en fait entraînés pour prédire l'horizon en **question + 1 jour**.
 
   **<u>Performances générales :</u>**
