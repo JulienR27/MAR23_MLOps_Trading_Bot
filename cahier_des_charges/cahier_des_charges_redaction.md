@@ -181,9 +181,6 @@ données, sur un échantillon des données les plus récentes…)
 - ### Que faire lorsque le modèle n’atteint pas le seuil de performance requis ?
 (envoyer un mail d’alerte aux personnes concernées, bloquer l’application)
 ## 6) Schéma d’implémentation
-Schéma récapitulatif du projet, les différentes composantes du projet et leurs interactions. 
-
-code couleur compréhensible 
 
 [Schéma d’implémentation](./images_cahier_des_charges/Schema_implementation_V1.8.2d.png) / [pdf](./images_cahier_des_charges/Schema_implementation_V1.8.2d.pdf)
 
