@@ -4,7 +4,7 @@ from requests.auth import HTTPBasicAuth
 
 def test_authentification():
     # définition de l'adresse de l'API
-    api_address = "trading_api"  # os.environ.get('API_ADDRESS')
+    api_address = "172.19.0.2"  # os.environ.get('API_ADDRESS')
     # port de l'API
     api_port = "8000"  # os.environ.get('API_PORT')
     tested_users = [{'username': 'alice', 'password': 'wonderland'},
