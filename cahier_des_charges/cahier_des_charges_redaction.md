@@ -105,20 +105,30 @@ Ce projet à pour vocation de développer une API permettant aux utilisateurs d'
   
   Comme nous récupèrerons les prix de clôture de la veille, tous les modèles sont en fait entraînés pour prédire **l'horizon en demandé + 1 jour**.
 
-  **<u>Performances générales :</u>**
+ - ### Métriques d’évaluation des modèles
   Pour évaluer la qualité de la prédiction, nous utilisons la métrique Mean Absolute Error. Celle-ci étant globalement assez élevée, il est intéressant de mesurer la prévision des prévisions à la hausse et à la baisse (on sépare les prédictions obtenues en valeurs positives et négatives et on les compare à la direction réelle du marché).
   Les modèles avec données de marché uniquement sont entraînés sur environ 2,3 millions d'échantillons, ce qui met 95 secondes sur notre machine.
-  Les modèles avec données fondamentales uniquement sont entraînés sur environ 120 mille échantillons, ce qui met 95 secondes sur notre machine.
+  Les modèles avec données fondamentales uniquement sont entraînés sur environ 120 mille échantillons, ce qui prend moins de une seconde sur notre machine.
+  Les modèles avec données de marché et fondamentales sont également entraînés sur environ 120 mille échantillons, ce qui prend moins de une seconde sur notre machine.
   - modèles de prédiction à un jour
     - marché : MAE = 1.57%, Accuracy = 53%
-    - fondamental : MAE, Accuracy = 58%
+    - fondamental : MAE = 1.44%, Accuracy = 58%
+    - marché et fondamental : MAE = 1.46%, Accuracy = 57%
+  - modèles de prédiction à une semaine
+    - marché : MAE = 3.90%, Accuracy = 57%
+    - fondamental : MAE = 2.48%, Accuracy = 60%
+    - marché et fondamental : MAE = 2.48%, Accuracy = 60%
+- modèles de prédiction à deux semaines
+    - marché : MAE = 5.30%, Accuracy = 57%
+    - fondamental : MAE = 3.13%, Accuracy = 64.5%
+    - marché et fondamental : MAE = 3.06%, Accuracy = 65%
+- modèles de prédiction à un mois
+    - marché : MAE = 7.58%, Accuracy = 58%
+    - fondamental : MAE = 3.12%, Accuracy = 81%
+    - marché et fondamental : MAE = 3.55%, Accuracy = 76%
   
   
-  
-  
-- ### La définition des métriques d’évaluation du modèle vis à vis des contraintes
-du projet (accuracy, robustesse, temps d’entraînement, temps de
-prédiction…)
+
 ## 3) Base de données
 
 Dans un premier temps, les données seront utilisées via des fichiers .csv.
