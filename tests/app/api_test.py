@@ -1,6 +1,8 @@
 import requests
 from requests.auth import HTTPBasicAuth
+import time
 
+time.sleep(15)
 
 def test_authentification():
     # définition de l'adresse de l'API
