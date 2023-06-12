@@ -103,10 +103,15 @@ Ce projet à pour vocation de développer une API permettant aux utilisateurs d'
   - deux semaines
   - un mois
   
-  Comme nous récupèrerons les prix de clôture de la veille, tous les modèles sont en fait entraînés pour prédire l'horizon en **question + 1 jour**.
+  Comme nous récupèrerons les prix de clôture de la veille, tous les modèles sont en fait entraînés pour prédire **l'horizon en demandé + 1 jour**.
 
   **<u>Performances générales :</u>**
-  
+  Pour évaluer la qualité de la prédiction, nous utilisons la métrique Mean Absolute Error. Celle-ci étant globalement assez élevée, il est intéressant de mesurer la prévision des prévisions à la hausse et à la baisse (on sépare les prédictions obtenues en valeurs positives et négatives et on les compare à la direction réelle du marché).
+  Les modèles avec données de marché uniquement sont entraînés sur environ 2,3 millions d'échantillons, ce qui met 95 secondes sur notre machine.
+  Les modèles avec données fondamentales uniquement sont entraînés sur environ 120 mille échantillons, ce qui met 95 secondes sur notre machine.
+  - modèles de prédiction à un jour
+    - marché : MAE = 1.57%, Accuracy = 53%
+    - fondamental : MAE, Accuracy = 58%
   
   
   
