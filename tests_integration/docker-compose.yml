@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  api:
+    image: trading_api:latest
+    container_name: trading_api
+    networks:
+      - api_network
+    ports:
+      - "8000:8000"
+  tests:
+    image: api_test:latest
+    container_name: api_test
+    depends_on:
+      - api
+    networks:
+      - api_network
+networks:
+  api_network:

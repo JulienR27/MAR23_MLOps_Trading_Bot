@@ -3,6 +3,8 @@ from datetime import date
 import pandas as pd
 import numpy as np
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service # new line caused by DeprecationWarning: executable_path has been deprecated, please pass in a Service object
+from selenium.webdriver.chrome.options import Options # new line for DevToolsActivePort issue
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -58,7 +60,8 @@ def find_divid_tables(driver, inference=False):
     driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
     
     elem = driver.find_element(By.XPATH, '//*[@id="ui-id-7"]')
-    elem.click()
+    driver.execute_script ("arguments[0].click();",elem)
+    # elem.click()
     #time.sleep(3) # try with comment
     
     #Expand 100 records if training
@@ -100,10 +103,22 @@ def get_earn_and_dividends(symbol, inference=False):
     This function launches browser for data load and fetches earnings and dividends data
     '''
     #Start Chrome 
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    #driver = webdriver.Chrome(ChromeDriverManager().install()) # deprecated
+    # Options to solve DevToolsActivePort issue
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    # chrome_options.add_argument('--ignore-certificate-errors')
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     #driver = webdriver.Chrome('/home/user/drivers/chromedriver')
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
+    time.sleep(1)
+    
+    # Handling data privacy pop up
+    elem = driver.find_element(By.XPATH, '//*[text()="Tout rejeter"]')
+    elem.click()
     
     # #Search stock
     # search_symbol(symbol, driver)
