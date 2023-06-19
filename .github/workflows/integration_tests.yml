@@ -17,4 +17,4 @@ jobs:
         run: docker image build -f ./tests_integration/security/tests.Dockerfile ./tests_integration/security -t api_test
 
       - name: Tests
-        run: ./start.sh
+        run: ./tests_integration/start.sh
