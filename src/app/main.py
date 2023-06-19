@@ -23,10 +23,12 @@ api = FastAPI(
 security = HTTPBasic()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-users_db = pd.read_csv("users_db.csv")
+# users_db = pd.read_csv("users_db.csv")
 
 def get_current_user(credentials: HTTPBasicCredentials = Depends(security)):
     username = credentials.username
+    users_db = pd.read_csv("users_db.csv")
+
     if (username not in list(users_db["username"])) or not (pwd_context.verify(credentials.password, pwd_context.hash(users_db[users_db["username"]==username]["password"].iloc[0]))):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -37,6 +39,8 @@ def get_current_user(credentials: HTTPBasicCredentials = Depends(security)):
 
 def get_admin(credentials: HTTPBasicCredentials = Depends(security)):
     username = credentials.username
+    users_db = pd.read_csv("users_db.csv")
+
     if users_db[(users_db["username"]==username) & (users_db["right"]=="admin")].any().sum() == 0:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -65,6 +69,7 @@ class User(BaseModel):
 
 @api.get('/admin', name='Get all the users and their right')
 def get_users(username: str = Depends(get_admin)):
+    users_db = pd.read_csv("users_db.csv")
     list_of_user_dicts = users_db.to_dict(orient='records')
     for user in list_of_user_dicts:
         user.pop("password")
@@ -90,13 +95,14 @@ def put_users(user: User, right: str = Depends(get_admin)):
    return {"Status": "User added to the database"}
 
 
-# L'admin peut rajouter des droits aux utilisateurs dans la BDD (A voir pour la gestion du mot de passe)
+# L'admin peut modifier les droits des utilisateurs dans la BDD (A voir pour la gestion du mot de passe)
 class UserRight(BaseModel):
     username: str
     right: str
     
 @api.post('/admin', name='Modify user right in the database')
 def post_right(user: UserRight, right: str = Depends(get_admin)):
+    users_db = pd.read_csv("users_db.csv")
     users_db.loc[users_db["username"]==user.username, "right"] = user.right
     users_db.to_csv('users_db.csv', index=False)
     return {"Status": "User right modified in the database"} 
@@ -105,6 +111,7 @@ def post_right(user: UserRight, right: str = Depends(get_admin)):
 # L'admin peut retirer des utilisateurs dans la BDD
 @api.delete('/admin', name='Remove user from the database')
 def remove(user: UserRight, right: str = Depends(get_admin)):
+    users_db = pd.read_csv("users_db.csv")
     new_users_db = users_db[users_db["username"] != user.username]
     new_users_db.to_csv('users_db.csv', index=False)
     return {"Status": "User removed from the database"} 
