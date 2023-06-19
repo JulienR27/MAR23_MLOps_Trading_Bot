@@ -60,7 +60,8 @@ def find_divid_tables(driver, inference=False):
     driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
     
     elem = driver.find_element(By.XPATH, '//*[@id="ui-id-7"]')
-    elem.click()
+    driver.execute_script ("arguments[0].click();",elem)
+    # elem.click()
     #time.sleep(3) # try with comment
     
     #Expand 100 records if training
@@ -108,10 +109,16 @@ def get_earn_and_dividends(symbol, inference=False):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
+    # chrome_options.add_argument('--ignore-certificate-errors')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
     #driver = webdriver.Chrome('/home/user/drivers/chromedriver')
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
+    time.sleep(1)
+    
+    # Handling data privacy pop up
+    elem = driver.find_element(By.XPATH, '//*[text()="Tout rejeter"]')
+    elem.click()
     
     # #Search stock
     # search_symbol(symbol, driver)
