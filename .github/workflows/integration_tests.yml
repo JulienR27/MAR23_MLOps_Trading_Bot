@@ -14,7 +14,7 @@ jobs:
         run: docker image build -f api.Dockerfile . -t trading_api
 
       - name: Build tests image
-        run: docker image build -f tests_integration/security/tests.Dockerfile . -t api_test
+        run: docker image build ./tests_integration/security -f tests.Dockerfile -t api_test
 
       - name: Tests
         run: ./start.sh
