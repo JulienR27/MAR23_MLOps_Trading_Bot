@@ -56,7 +56,7 @@ def get_admin(credentials: HTTPBasicCredentials = Depends(security)):
     return users_db[users_db["username"]==username]["right"].iloc[0]
 
 # welcome
-@api.get('/', name='Check if working')
+@api.get('/', name='Check if working', tags=['Use'])
 def greetings(right: str = Depends(get_current_user)):
    return {"Welcome": f"Hello, you have {right} rights"}
 
@@ -67,7 +67,7 @@ class User(BaseModel):
     password: str
     right: str
 
-@api.get('/admin', name='Get all the users and their right')
+@api.get('/admin', name='Get all the users and their right', tags=['Admin'])
 def get_users(username: str = Depends(get_admin)):
     users_db = pd.read_csv("users_db.csv")
     list_of_user_dicts = users_db.to_dict(orient='records')
@@ -77,7 +77,7 @@ def get_users(username: str = Depends(get_admin)):
 
 
 # L'admin peut rajouter des utilisateurs dans la BDD (A voir pour la gestion du mot de passe)
-@api.put('/admin', name='Add user to the database')
+@api.put('/admin', name='Add user to the database', tags=['Admin'])
 def put_users(user: User, right: str = Depends(get_admin)):
    # Dictionary that we want to add to csv database
    new_user_dict = user.dict()
@@ -100,7 +100,7 @@ class UserRight(BaseModel):
     username: str
     right: str
     
-@api.post('/admin', name='Modify user right in the database')
+@api.post('/admin', name='Modify user right in the database', tags=['Admin'])
 def post_right(user: UserRight, right: str = Depends(get_admin)):
     users_db = pd.read_csv("users_db.csv")
     users_db.loc[users_db["username"]==user.username, "right"] = user.right
@@ -109,7 +109,7 @@ def post_right(user: UserRight, right: str = Depends(get_admin)):
 
 
 # L'admin peut retirer des utilisateurs dans la BDD
-@api.delete('/admin', name='Remove user from the database')
+@api.delete('/admin', name='Remove user from the database', tags=['Admin'])
 def remove(user: UserRight, right: str = Depends(get_admin)):
     users_db = pd.read_csv("users_db.csv")
     new_users_db = users_db[users_db["username"] != user.username]
@@ -125,7 +125,7 @@ class Params(BaseModel):
    time_horizon: str 
    trading_type: str 
 
-@api.post('/predictions', name="Get predictions according to params")
+@api.post('/predictions', name="Get predictions according to params", tags=['Use'])
 def predict(params: Params, right: str = Depends(get_current_user)):
     '''
     Generate predictions according to params
@@ -166,7 +166,7 @@ class ParamsBest(BaseModel):
    time_horizon: str 
    trading_type: str 
    
-@api.post('/best', name="Get best stocks in environment")
+@api.post('/best', name="Get best stocks in environment", tags=['Use'])
 def predict_best_stocks(params: ParamsBest, right: str = Depends(get_current_user)):
    '''
    Generate predictions on entire stocks environment according to params
