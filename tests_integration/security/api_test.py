@@ -30,9 +30,40 @@ def test_authentification():
         # test
         assert status_code == expected_results[i]
 
+def test_authorization():
+    # définition de l'adresse de l'API
+    api_address = "trading_api"  # os.environ.get('API_ADDRESS')
+    # port de l'API
+    api_port = "8000"  # os.environ.get('API_PORT')
+    tested_users = [{'username': 'alice', 'password': 'wonderland', 'trading_type': 'fundamental'},
+                    {'username': 'bob', 'password': 'builder', 'trading_type': 'market'},
+                    #{'username': 'julien', 'password': 'chaplet'}
+                    ]
+
+    expected_results = [401, 401]
+
+    r = []
+    for tested_user in tested_users:
+        r_ = requests.get(
+            url='http://{address}:{port}/predictions'.format(address=api_address, port=api_port),
+            auth=HTTPBasicAuth(tested_user['username'], tested_user['password'])
+            params= {
+                'tickers': "AAPL",
+                'time_horizon': "1m",
+                'trading_type': tested_user["trading_type"]
+            })
+        r.append(r_)
+
+    for i, r_ in enumerate(r):
+        # statut de la requête
+        status_code = r_.status_code
+
+        # test
+        assert status_code == expected_results[i]
+
 if __name__== "__main__":
     test_authentification()
-
+    test_authorization()
 
 
 # # définition de l'adresse de l'API
