@@ -46,7 +46,7 @@ def test_authorization():
     for tested_user in tested_users:
         r_ = requests.get(
             url='http://{address}:{port}/predictions'.format(address=api_address, port=api_port),
-            auth=HTTPBasicAuth(tested_user['username'], tested_user['password'])
+            auth=HTTPBasicAuth(tested_user['username'], tested_user['password']),
             params= {
                 'tickers': "AAPL",
                 'time_horizon': "1m",
