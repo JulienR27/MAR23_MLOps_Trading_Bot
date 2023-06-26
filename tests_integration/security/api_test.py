@@ -44,7 +44,7 @@ def test_authorization():
 
     r = []
     for tested_user in tested_users:
-        r_ = requests.get(
+        r_ = requests.post(
             url='http://{address}:{port}/predictions'.format(address=api_address, port=api_port),
             auth=HTTPBasicAuth(tested_user['username'], tested_user['password']),
             params= {
