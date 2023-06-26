@@ -48,7 +48,7 @@ def test_authorization():
             url='http://{address}:{port}/predictions'.format(address=api_address, port=api_port),
             auth=HTTPBasicAuth(tested_user['username'], tested_user['password']),
             params= {
-                'tickers': "AAPL",
+                'tickers': ["AAPL"],
                 'time_horizon': "1m",
                 'trading_type': tested_user["trading_type"]
             })
