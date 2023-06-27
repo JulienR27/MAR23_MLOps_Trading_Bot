@@ -123,6 +123,8 @@ def get_earn_and_dividends(symbol, inference=False):
     except:
         elem = driver.find_element(By.XPATH, '//*[text()="Reject all"]')
         elem.click()
+    except:
+        pass
     # #Search stock
     # search_symbol(symbol, driver)
     
