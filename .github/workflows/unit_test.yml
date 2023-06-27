@@ -1,4 +1,4 @@
-name: Control Push
+name: Control Push Unit tests
 on: push
 jobs:
   qa:
