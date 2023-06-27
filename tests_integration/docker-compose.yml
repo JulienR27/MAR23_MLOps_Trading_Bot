@@ -8,8 +8,8 @@ services:
     ports:
       - "8000:8000"
   tests:
-    image: api_test:latest
-    container_name: api_test
+    image: api_tests:latest
+    container_name: api_tests
     depends_on:
       - api
     networks:

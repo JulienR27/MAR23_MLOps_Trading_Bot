@@ -117,9 +117,12 @@ def get_earn_and_dividends(symbol, inference=False):
     time.sleep(1)
     
     # Handling data privacy pop up
-    elem = driver.find_element(By.XPATH, '//*[text()="Tout rejeter"]')
-    elem.click()
-    
+    try:
+        elem = driver.find_element(By.XPATH, '//*[text()="Tout rejeter"]')
+        elem.click()
+    except:
+        elem = driver.find_element(By.XPATH, '//*[text()="Reject all"]')
+        elem.click()
     # #Search stock
     # search_symbol(symbol, driver)
     
