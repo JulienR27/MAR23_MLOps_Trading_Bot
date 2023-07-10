@@ -1,7 +1,8 @@
-name: Integration tests
+name: API Integration 
 on: 
   push:
-    branches: "master"
+    branches:
+      - main
 jobs:
   build_push_api:
     runs-on: ubuntu-latest
