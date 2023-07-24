@@ -12,12 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-import io
-from pathlib import Path
-current_path = Path(os.getcwd())
-project_path = current_path.parent.parent.as_posix()
-sys.path.append(project_path)
-from src.domain.utils.fetch_data import fetch_fundamental
+from src.domain.utils.fetch_data import fetch_fundamental#, fetch_stock
 
 
 fetch_data_dag = DAG(
@@ -33,41 +28,11 @@ This DAG has been made by the trading bot datascientest team
     schedule_interval="0 6 * * 1-5",
     tags=['tradingbot'],
     default_args={
-            'start_date': datetime(2023,7,19)
+            'start_date': datetime(2023,7,21)
         }
 )
 
 tickers = ["AAPL", "TSLA"]
-
-def fetch_fundamental(ticker, historical_days=35):
-    # Get close data to compute peRatio and DividendsYield
-    fundamental_data = fetch_stock(ticker, historical_days=historical_days)["close"]
-    # Get stock dividents & earnings
-    stock_earnings, stock_dividends = new_earnings.get_earn_and_dividends(ticker, inference=True) 
-    # Combining data with earnings & dividends info
-    fundamental_data = pd.concat([fundamental_data, stock_earnings], axis=1, join="inner")
-    fundamental_data = fundamental_data.join(stock_dividends, how = 'left')
-    # Get stock sector and industry from yahoo finance
-    stock_metadata = yf.Ticker(ticker).info
-    # They are not always there
-    try:
-        fundamental_data['sector'] = stock_metadata['sector']
-    except:
-        fundamental_data['sector'] = "Industrials" #to check
-    try:
-        fundamental_data['industry'] = stock_metadata['industry']
-    except:
-        fundamental_data['industry'] = float("nan")
-   #  # Get VIX Volatility index and join
-   #  vix_df = VIX.get_vix(historical_days=historical_days)
-   #  fundamental_data = fundamental_data.join(vix_df, how = 'left')
-   #  # Get 10Y_bond index and combine data with US Bonds
-   #  us_bond = US_bond_yfinance.get_bonds(historical_days = 35)
-   #  fundamental_data = fundamental_data.join(us_bond, how = 'left')
-    # Sorting values by date
-    fundamental_data.sort_values(by = 'date', axis = 0, ascending = True, inplace = True)
-    
-    return fundamental_data
 
 def fetch_all_fundamental():
     X_fundamental = pd.DataFrame(columns=["date", "stock"]).set_index("date")

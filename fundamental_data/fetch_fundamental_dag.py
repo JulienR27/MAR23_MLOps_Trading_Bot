@@ -12,12 +12,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-import io
-from pathlib import Path
-current_path = Path(os.getcwd())
-project_path = current_path.parent.parent.as_posix()
-sys.path.append(project_path)
-from src.domain.utils.fetch_data import fetch_fundamental
+from fetch_data import fetch_fundamental
 
 
 fetch_data_dag = DAG(
