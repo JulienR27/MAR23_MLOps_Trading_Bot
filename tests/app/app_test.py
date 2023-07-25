@@ -20,21 +20,6 @@ def test_get_users():
     assert test_users[0]["username"] == "test"
     assert test_users[0]["right"] == "tester"
 
-# from csv import DictWriter
-# def create_user(user: User, right: str):
-#    # Dictionary that we want to add to csv database
-#    new_user_dict = user.dict()
-#    # list of column names
-#    field_names = list(new_user_dict.keys())
-#    # Opening CSV file in append mode and creating a file object for this file
-#    with open(os.environ["PATH_TO_DATABASE"], 'a') as f_object:
-#       # we pass the file object and the list of column names to DictWriter()
-#       dictwriter_object = DictWriter(f_object, fieldnames=field_names)
-#       # we pass the dictionary as an argument to the Writerow()
-#       dictwriter_object.writerow(new_user_dict)
-#       # we close the file object
-#       f_object.close()
-
 def test_create_user():
     old_test_users_db = pd.read_csv(os.environ["PATH_TO_DATABASE"])
     nb_rows_old = old_test_users_db.shape[0]
