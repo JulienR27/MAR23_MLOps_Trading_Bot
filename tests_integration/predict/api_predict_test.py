@@ -9,13 +9,13 @@ def test_predict():
     api_address = "trading_api"  # os.environ.get('API_ADDRESS')
     # port de l'API
     api_port = "8000"  # os.environ.get('API_PORT')
-    tested_user = {'username': 'julien', 'password': 'chaplet'},
+    tested_user = {'username': 'julien', 'password': 'chaplet'}
     
     r_ = requests.post(
         url='http://{address}:{port}/predictions'.format(address=api_address, port=api_port),
         auth=HTTPBasicAuth(tested_user['username'], tested_user['password']),
         json = {
-            'tickers': ["AAPL", "TSLA"],
+            'tickers': ["CSCO", "TSLA"],
             'time_horizon': "1w",
             'trading_type': "market_and_fundamental"
         })
