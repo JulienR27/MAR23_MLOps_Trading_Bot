@@ -1,1 +1,1 @@
-docker-compose up --exit-code-from tests
+docker-compose up --exit-code-from content_tests
