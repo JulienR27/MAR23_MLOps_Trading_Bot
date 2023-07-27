@@ -163,17 +163,17 @@ def predict(params: Params, right: str = Depends(get_current_user)):
     model = load(f'{project_path}/src/domain/trained_models/lgbm_{params.trading_type}_{params.time_horizon}.joblib') 
     # Loading sector encoder
     sector_encoder = load(f'{project_path}/src/domain/trained_models/label_encoder.joblib') 
-    try:   
-       # Making the predictions
-        predictions = make_prediction(model, sector_encoder, params.time_horizon, params.trading_type, params.tickers)
-        
-        for ticker in predictions:
-            predictions[ticker] = f"{round(predictions[ticker] * 100, 3)}%"
-        
-        return predictions
+    # try:   
+    # Making the predictions
+    predictions = make_prediction(model, sector_encoder, params.time_horizon, params.trading_type, params.tickers)
     
-    except ValueError:
-      raise HTTPException(status_code=404, detail='You may have exceeded the requests limit')
+    for ticker in predictions:
+        predictions[ticker] = f"{round(predictions[ticker] * 100, 3)}%"
+    
+    return predictions
+
+    # except ValueError:
+    #   raise HTTPException(status_code=404, detail='You may have exceeded the requests limit')
 
 
 # L'utilisateur demande une prédiction sur tout l'univers d'investissment en donnant ses "ParamsBest"
