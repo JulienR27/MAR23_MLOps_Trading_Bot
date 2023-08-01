@@ -110,7 +110,9 @@ def get_earn_and_dividends(symbol, inference=False):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     # chrome_options.add_argument('--ignore-certificate-errors')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options) # modified on 01/08/2023, SeleniumManager now handles browser drivers
+    service = Service()
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     #driver = webdriver.Chrome('/home/user/drivers/chromedriver')
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
