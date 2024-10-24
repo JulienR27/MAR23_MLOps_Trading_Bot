@@ -3,11 +3,24 @@ from datetime import date
 import pandas as pd
 import numpy as np
 from selenium import webdriver
+# using Chrome
 from selenium.webdriver.chrome.service import Service # new line caused by DeprecationWarning: executable_path has been deprecated, please pass in a Service object
 from selenium.webdriver.chrome.options import Options # new line for DevToolsActivePort issue
 from webdriver_manager.chrome import ChromeDriverManager
+# using Chromium
+# from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.options import Options 
+# from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.core.os_manager import ChromeType
+# using Firefox
+# from selenium.webdriver.firefox.service import Service
+# from selenium.webdriver.firefox.options import Options 
+# from webdriver_manager.firefox import GeckoDriverManager
+#
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 import io
 
@@ -23,7 +36,11 @@ def find_estim_tables(driver):
     get a table with earnings on a page  ZACK
     '''
     #Find required table
-    elem = driver.find_element(By.XPATH, '//*[@id="earnings_announcements_earnings_table"]') 
+    elem = driver.find_element(By.XPATH, '//*[@id="earnings_announcements_earnings_table"]')
+    #time.sleep(2)
+    # elem = WebDriverWait(driver, 10).until(
+    #     lambda x: x.find_element(By.XPATH, '//*[@id="earnings_announcements_earnings_table"]').text != ""
+    # )
     #get all rows from the table
     rows = [row.text.encode("utf8") for row in elem.find_elements(By.TAG_NAME, 'tr')]
     #convert list of bytes to list of strings
@@ -41,7 +58,8 @@ def find_estim_tables(driver):
     rows2 = [row.decode("utf-8").replace("\n"," ") for row in rows2]    
     #convert list of strings to a dataframe 
     earnings_latest_df = pd.DataFrame(rows1).transpose()
-    earnings_latest_df.columns =  ['Period_Ending', 'Estimate', 'Surprise_%']
+    earnings_latest_df.columns =  ['Period_Ending', 'Estimate', 'Earnings_esp']
+    earnings_latest_df.drop(["Earnings_esp"], axis=1, inplace=True)
     earnings_latest_df["date"] = rows2[-1].split(" ")[0]
     
     earnings = pd.concat([earnings_latest_df, earnings_history_df], ignore_index = True, sort = False)
@@ -59,7 +77,8 @@ def find_divid_tables(driver, inference=False):
     element = driver.find_element(By.XPATH, '//*[@id="earnings_announcements_tabs"]/ul')
     driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
     
-    elem = driver.find_element(By.XPATH, '//*[@id="ui-id-7"]')
+    # elem = driver.find_element(By.XPATH, '//*[@aria-controls="earnings_announcements_dividends"]')
+    elem = driver.find_element(By.LINK_TEXT, "Dividends")
     driver.execute_script ("arguments[0].click();",elem)
     # elem.click()
     #time.sleep(3) # try with comment
@@ -110,8 +129,14 @@ def get_earn_and_dividends(symbol, inference=False):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     # chrome_options.add_argument('--ignore-certificate-errors')
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-    #driver = webdriver.Chrome('/home/user/drivers/chromedriver')
+    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options) # modified on 01/08/2023, SeleniumManager now handles browser drivers
+    service = Service()
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    # using Firefox
+    #driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=chrome_options)
+    # using Chromium
+    #driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options)
+    
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
     time.sleep(1)
@@ -120,10 +145,12 @@ def get_earn_and_dividends(symbol, inference=False):
     try:
         elem = driver.find_element(By.XPATH, '//*[text()="Tout rejeter"]')
         elem.click()
+        time.sleep(1)
     except:
         try:
             elem = driver.find_element(By.XPATH, '//*[text()="Reject all"]')
             elem.click()
+            time.sleep(1)
         except:
             pass
     # #Search stock
