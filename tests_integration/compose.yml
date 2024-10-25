@@ -18,7 +18,6 @@ services:
     container_name: api_predict_tests
     depends_on:
       - api
-      - security_tests
     networks:
       - api_network
 networks:
