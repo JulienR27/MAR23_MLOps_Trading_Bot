@@ -15,6 +15,8 @@ def get_bonds(last_date = date.today(), historical_days = 1450):
     
     histo.rename(columns = {"^TNX":"10Y_bonds"}, inplace = True)
     
+    histo.index.names = ['date']
+
     histo = histo.tz_localize(None)
     
     histo["10Y_bond_MoM"] = histo["10Y_bonds"].pct_change(21)
