@@ -13,7 +13,7 @@ def get_bonds(last_date = date.today(), historical_days = 1450):
     #Retrieving data from yahoo, keeping only close value (which is same as "Adj Close")
     histo = yf.download("^TNX", start=historical_date, end=last_date, interval="1d", progress=False)['Close']
     
-    histo.rename(columns = {"Close":"10Y_bonds"}, inplace = True)
+    histo.rename(columns = {"^TNX":"10Y_bonds"}, inplace = True)
     
     histo.index.names = ['date']
     
