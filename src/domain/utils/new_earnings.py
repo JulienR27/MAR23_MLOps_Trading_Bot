@@ -41,6 +41,9 @@ def find_estim_tables(driver):
     # elem = WebDriverWait(driver, 10).until(
     #     lambda x: x.find_element(By.XPATH, '//*[@id="earnings_announcements_earnings_table"]').text != ""
     # )
+    # elem = WebDriverWait(driver, 10).until(
+    #     EC.presence_of_element_located((By.XPATH, '//*[@id="earnings_announcements_earnings_table"]'))
+    # )
     #get all rows from the table
     rows = [row.text.encode("utf8") for row in elem.find_elements(By.TAG_NAME, 'tr')]
     #convert list of bytes to list of strings
