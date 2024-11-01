@@ -1,15 +1,14 @@
-version: "3.9"
 services:
   api:
-    image: datatradingbot/trading_api:latest
+    image: trading_api:latest
     container_name: trading_api
     networks:
       - api_network
     ports:
       - "8000:8000"
   security_tests:
-    image: api_tests:latest
-    container_name: api_tests
+    image: api_security_tests:latest
+    container_name: api_security_tests
     depends_on:
       - api
     networks:
