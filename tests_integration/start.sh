@@ -1,1 +1,1 @@
-docker compose up content_tests
+docker compose up --exit-code-from integration_tests

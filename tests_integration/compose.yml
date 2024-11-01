@@ -6,19 +6,11 @@ services:
       - api_network
     ports:
       - "8000:8000"
-  security_tests:
-    image: api_security_tests:latest
-    container_name: api_security_tests
+  integration_tests:
+    image: api_tests:latest
+    container_name: api_tests
     depends_on:
       - api
-    networks:
-      - api_network
-  content_tests:
-    image: api_predict_tests:latest
-    container_name: api_predict_tests
-    depends_on:
-      - api
-      - security_tests
     networks:
       - api_network
 networks:
