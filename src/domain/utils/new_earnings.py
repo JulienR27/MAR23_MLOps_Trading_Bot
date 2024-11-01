@@ -139,7 +139,7 @@ def get_earn_and_dividends(symbol, inference=False):
     #driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=chrome_options)
     # using Chromium
     #driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options)
-    
+
     #Go to the website
     driver.get(f'https://www.zacks.com/stock/research/{symbol}/earnings-calendar')
     time.sleep(1)
