@@ -1,6 +1,6 @@
 services:
   api:
-    image: trading_api:latest
+    image: datatradingbot/trading_api:latest
     container_name: trading_api
     networks:
       - api_network
