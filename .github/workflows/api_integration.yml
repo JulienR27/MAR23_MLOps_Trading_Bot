@@ -16,11 +16,8 @@ jobs:
       - name: Build api image
         run: docker image build -f api.Dockerfile . -t datatradingbot/trading_api
 
-      - name: Build security tests image
-        run: docker image build -f ./tests_integration/security/tests.Dockerfile ./tests_integration/security -t api_security_tests
-
-      - name: Build predict tests image
-        run: docker image build -f ./tests_integration/predict/tests.Dockerfile ./tests_integration/predict -t api_predict_tests
+      - name: Build integration tests image
+        run: docker image build -f ./tests_integration/tests.Dockerfile ./tests_integration -t api_tests
 
       - name: Tests
         run: cd ./tests_integration && ./start.sh
